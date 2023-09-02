@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FADBCA9F2AA39E4B00A28511 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCA9E2AA39E4B00A28511 /* AppDelegate.swift */; };
-		FADBCAA12AA39E4B00A28511 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCAA02AA39E4B00A28511 /* SceneDelegate.swift */; };
-		FADBCAA32AA39E4B00A28511 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCAA22AA39E4B00A28511 /* ViewController.swift */; };
+		FADBCAA32AA39E4B00A28511 /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCAA22AA39E4B00A28511 /* CityViewController.swift */; };
 		FADBCAA62AA39E4B00A28511 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADBCAA42AA39E4B00A28511 /* Main.storyboard */; };
 		FADBCAA82AA39E4C00A28511 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FADBCAA72AA39E4C00A28511 /* Assets.xcassets */; };
 		FADBCAAB2AA39E4C00A28511 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADBCAA92AA39E4C00A28511 /* LaunchScreen.storyboard */; };
@@ -18,8 +17,7 @@
 /* Begin PBXFileReference section */
 		FADBCA9B2AA39E4B00A28511 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADBCA9E2AA39E4B00A28511 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FADBCAA02AA39E4B00A28511 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FADBCAA22AA39E4B00A28511 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FADBCAA22AA39E4B00A28511 /* CityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
 		FADBCAA52AA39E4B00A28511 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FADBCAA72AA39E4C00A28511 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FADBCAAA2AA39E4C00A28511 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,15 +54,38 @@
 		FADBCA9D2AA39E4B00A28511 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				FADBCA9E2AA39E4B00A28511 /* AppDelegate.swift */,
-				FADBCAA02AA39E4B00A28511 /* SceneDelegate.swift */,
-				FADBCAA22AA39E4B00A28511 /* ViewController.swift */,
+				FADBCAB32AA3CEFB00A28511 /* Application */,
+				FADBCAB22AA3C7DB00A28511 /* Screens */,
 				FADBCAA42AA39E4B00A28511 /* Main.storyboard */,
+			);
+			path = WeatherApp;
+			sourceTree = "<group>";
+		};
+		FADBCAB22AA3C7DB00A28511 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				FADBCAB42AA3D22C00A28511 /* CityInputView */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		FADBCAB32AA3CEFB00A28511 /* Application */ = {
+			isa = PBXGroup;
+			children = (
 				FADBCAA72AA39E4C00A28511 /* Assets.xcassets */,
+				FADBCA9E2AA39E4B00A28511 /* AppDelegate.swift */,
 				FADBCAA92AA39E4C00A28511 /* LaunchScreen.storyboard */,
 				FADBCAAC2AA39E4C00A28511 /* Info.plist */,
 			);
-			path = WeatherApp;
+			path = Application;
+			sourceTree = "<group>";
+		};
+		FADBCAB42AA3D22C00A28511 /* CityInputView */ = {
+			isa = PBXGroup;
+			children = (
+				FADBCAA22AA39E4B00A28511 /* CityViewController.swift */,
+			);
+			path = CityInputView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +159,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FADBCAA32AA39E4B00A28511 /* ViewController.swift in Sources */,
+				FADBCAA32AA39E4B00A28511 /* CityViewController.swift in Sources */,
 				FADBCA9F2AA39E4B00A28511 /* AppDelegate.swift in Sources */,
-				FADBCAA12AA39E4B00A28511 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +309,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2A8FN782JR;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WeatherApp/Info.plist;
+				INFOPLIST_FILE = WeatherApp/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -317,7 +337,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2A8FN782JR;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WeatherApp/Info.plist;
+				INFOPLIST_FILE = WeatherApp/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

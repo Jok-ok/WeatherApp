@@ -7,14 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FAAEF83A2B51FEED00AF1A7D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAEF8392B51FEED00AF1A7D /* SceneDelegate.swift */; };
 		FADBCA9F2AA39E4B00A28511 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCA9E2AA39E4B00A28511 /* AppDelegate.swift */; };
 		FADBCAA32AA39E4B00A28511 /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCAA22AA39E4B00A28511 /* CityViewController.swift */; };
 		FADBCAA62AA39E4B00A28511 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADBCAA42AA39E4B00A28511 /* Main.storyboard */; };
 		FADBCAA82AA39E4C00A28511 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FADBCAA72AA39E4C00A28511 /* Assets.xcassets */; };
 		FADBCAAB2AA39E4C00A28511 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADBCAA92AA39E4C00A28511 /* LaunchScreen.storyboard */; };
+		FADBCABC2AA3E65A00A28511 /* CityModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCABB2AA3E65A00A28511 /* CityModuleConfigurator.swift */; };
+		FADBCABE2AA3ED7600A28511 /* CityModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCABD2AA3ED7600A28511 /* CityModuleOutput.swift */; };
+		FADBCAC02AA3EE6300A28511 /* CityRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCABF2AA3EE6300A28511 /* CityRouter.swift */; };
+		FADBCAC22AA4D35E00A28511 /* CityViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCAC12AA4D35E00A28511 /* CityViewInput.swift */; };
+		FADBCAC42AA4D37100A28511 /* CityViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCAC32AA4D37100A28511 /* CityViewOutput.swift */; };
+		FADBCAC82AA4D3DF00A28511 /* CityPresenterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCAC72AA4D3DF00A28511 /* CityPresenterModel.swift */; };
+		FADBCACA2AA4D4D300A28511 /* CityRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCAC92AA4D4D300A28511 /* CityRouterInput.swift */; };
+		FADBCACC2AA4E8A600A28511 /* CityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCACB2AA4E8A600A28511 /* CityPresenter.swift */; };
+		FADBCACE2AA4EBCB00A28511 /* CityModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCACD2AA4EBCB00A28511 /* CityModuleInput.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FAAEF8392B51FEED00AF1A7D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FADBCA9B2AA39E4B00A28511 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADBCA9E2AA39E4B00A28511 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FADBCAA22AA39E4B00A28511 /* CityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +33,15 @@
 		FADBCAA72AA39E4C00A28511 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FADBCAAA2AA39E4C00A28511 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FADBCAAC2AA39E4C00A28511 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FADBCABB2AA3E65A00A28511 /* CityModuleConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModuleConfigurator.swift; sourceTree = "<group>"; };
+		FADBCABD2AA3ED7600A28511 /* CityModuleOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModuleOutput.swift; sourceTree = "<group>"; };
+		FADBCABF2AA3EE6300A28511 /* CityRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRouter.swift; sourceTree = "<group>"; };
+		FADBCAC12AA4D35E00A28511 /* CityViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewInput.swift; sourceTree = "<group>"; };
+		FADBCAC32AA4D37100A28511 /* CityViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewOutput.swift; sourceTree = "<group>"; };
+		FADBCAC72AA4D3DF00A28511 /* CityPresenterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPresenterModel.swift; sourceTree = "<group>"; };
+		FADBCAC92AA4D4D300A28511 /* CityRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRouterInput.swift; sourceTree = "<group>"; };
+		FADBCACB2AA4E8A600A28511 /* CityPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPresenter.swift; sourceTree = "<group>"; };
+		FADBCACD2AA4EBCB00A28511 /* CityModuleInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModuleInput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +84,7 @@
 		FADBCAB22AA3C7DB00A28511 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				FADBCAB42AA3D22C00A28511 /* CityInputView */,
+				FADBCAB52AA3E3DC00A28511 /* CityInput */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -76,16 +96,74 @@
 				FADBCA9E2AA39E4B00A28511 /* AppDelegate.swift */,
 				FADBCAA92AA39E4C00A28511 /* LaunchScreen.storyboard */,
 				FADBCAAC2AA39E4C00A28511 /* Info.plist */,
+				FAAEF8392B51FEED00AF1A7D /* SceneDelegate.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
 		};
-		FADBCAB42AA3D22C00A28511 /* CityInputView */ = {
+		FADBCAB42AA3D22C00A28511 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				FADBCAA22AA39E4B00A28511 /* CityViewController.swift */,
+				FADBCAC12AA4D35E00A28511 /* CityViewInput.swift */,
+				FADBCAC32AA4D37100A28511 /* CityViewOutput.swift */,
 			);
-			path = CityInputView;
+			path = View;
+			sourceTree = "<group>";
+		};
+		FADBCAB52AA3E3DC00A28511 /* CityInput */ = {
+			isa = PBXGroup;
+			children = (
+				FADBCAB62AA3E3FB00A28511 /* Configurator */,
+				FADBCAB82AA3E40B00A28511 /* Preseter */,
+				FADBCAB92AA3E43B00A28511 /* Router */,
+				FADBCAB42AA3D22C00A28511 /* View */,
+			);
+			path = CityInput;
+			sourceTree = "<group>";
+		};
+		FADBCAB62AA3E3FB00A28511 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				FADBCABB2AA3E65A00A28511 /* CityModuleConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		FADBCAB82AA3E40B00A28511 /* Preseter */ = {
+			isa = PBXGroup;
+			children = (
+				FADBCAC52AA4D3AB00A28511 /* Support */,
+				FADBCABD2AA3ED7600A28511 /* CityModuleOutput.swift */,
+				FADBCACB2AA4E8A600A28511 /* CityPresenter.swift */,
+				FADBCACD2AA4EBCB00A28511 /* CityModuleInput.swift */,
+			);
+			path = Preseter;
+			sourceTree = "<group>";
+		};
+		FADBCAB92AA3E43B00A28511 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				FADBCABF2AA3EE6300A28511 /* CityRouter.swift */,
+				FADBCAC92AA4D4D300A28511 /* CityRouterInput.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		FADBCAC52AA4D3AB00A28511 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				FADBCAC62AA4D3CE00A28511 /* Model */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		FADBCAC62AA4D3CE00A28511 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FADBCAC72AA4D3DF00A28511 /* CityPresenterModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,8 +237,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FADBCABC2AA3E65A00A28511 /* CityModuleConfigurator.swift in Sources */,
+				FADBCABE2AA3ED7600A28511 /* CityModuleOutput.swift in Sources */,
+				FADBCACA2AA4D4D300A28511 /* CityRouterInput.swift in Sources */,
+				FADBCAC22AA4D35E00A28511 /* CityViewInput.swift in Sources */,
+				FADBCAC02AA3EE6300A28511 /* CityRouter.swift in Sources */,
+				FADBCAC42AA4D37100A28511 /* CityViewOutput.swift in Sources */,
+				FADBCAC82AA4D3DF00A28511 /* CityPresenterModel.swift in Sources */,
+				FADBCACE2AA4EBCB00A28511 /* CityModuleInput.swift in Sources */,
+				FADBCACC2AA4E8A600A28511 /* CityPresenter.swift in Sources */,
 				FADBCAA32AA39E4B00A28511 /* CityViewController.swift in Sources */,
 				FADBCA9F2AA39E4B00A28511 /* AppDelegate.swift in Sources */,
+				FAAEF83A2B51FEED00AF1A7D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,7 +400,6 @@
 				INFOPLIST_FILE = WeatherApp/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -340,7 +427,6 @@
 				INFOPLIST_FILE = WeatherApp/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

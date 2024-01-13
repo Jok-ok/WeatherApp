@@ -3,7 +3,7 @@ import UIKit
 class CityViewController: UIViewController, CityViewInput {
     
     private var cityTextField = UITextField()
-    private var confirmButton = UIButton(configuration: .borderedTinted())
+    private var confirmButton = StandartButton()
     
     var output: CityViewOutput?
 
@@ -59,7 +59,6 @@ private extension CityViewController {
     }
     
     func constraintConfirmButton() {
-        confirmButton.translatesAutoresizingMaskIntoConstraints = false
         let constraints = [
             confirmButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             confirmButton.topAnchor.constraint(equalTo: cityTextField.bottomAnchor, constant: 20),

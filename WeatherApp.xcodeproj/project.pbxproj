@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA798B5B2B520B3300977816 /* StandartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA798B5A2B520B3300977816 /* StandartButton.swift */; };
+		FA798B5D2B520B4500977816 /* StandartTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA798B5C2B520B4500977816 /* StandartTextField.swift */; };
+		FA798B602B52BC2D00977816 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA798B5F2B52BC2D00977816 /* UIColor + Extension.swift */; };
+		FA798B622B52C5F600977816 /* UIFonts + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA798B612B52C5F600977816 /* UIFonts + Extensions.swift */; };
 		FAAEF83A2B51FEED00AF1A7D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAEF8392B51FEED00AF1A7D /* SceneDelegate.swift */; };
 		FADBCA9F2AA39E4B00A28511 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCA9E2AA39E4B00A28511 /* AppDelegate.swift */; };
 		FADBCAA32AA39E4B00A28511 /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCAA22AA39E4B00A28511 /* CityViewController.swift */; };
@@ -25,6 +29,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA798B5A2B520B3300977816 /* StandartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandartButton.swift; sourceTree = "<group>"; };
+		FA798B5C2B520B4500977816 /* StandartTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandartTextField.swift; sourceTree = "<group>"; };
+		FA798B5F2B52BC2D00977816 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
+		FA798B612B52C5F600977816 /* UIFonts + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFonts + Extensions.swift"; sourceTree = "<group>"; };
 		FAAEF8392B51FEED00AF1A7D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FADBCA9B2AA39E4B00A28511 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADBCA9E2AA39E4B00A28511 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +63,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA798B592B520B1B00977816 /* Base UI */ = {
+			isa = PBXGroup;
+			children = (
+				FA798B5A2B520B3300977816 /* StandartButton.swift */,
+				FA798B5C2B520B4500977816 /* StandartTextField.swift */,
+			);
+			path = "Base UI";
+			sourceTree = "<group>";
+		};
+		FA798B5E2B52BC1600977816 /* UI + Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FA798B5F2B52BC2D00977816 /* UIColor + Extension.swift */,
+				FA798B612B52C5F600977816 /* UIFonts + Extensions.swift */,
+			);
+			path = "UI + Extensions";
+			sourceTree = "<group>";
+		};
 		FADBCA922AA39E4A00A28511 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +100,8 @@
 		FADBCA9D2AA39E4B00A28511 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				FA798B5E2B52BC1600977816 /* UI + Extensions */,
+				FA798B592B520B1B00977816 /* Base UI */,
 				FADBCAB32AA3CEFB00A28511 /* Application */,
 				FADBCAB22AA3C7DB00A28511 /* Screens */,
 				FADBCAA42AA39E4B00A28511 /* Main.storyboard */,
@@ -239,14 +267,18 @@
 			files = (
 				FADBCABC2AA3E65A00A28511 /* CityModuleConfigurator.swift in Sources */,
 				FADBCABE2AA3ED7600A28511 /* CityModuleOutput.swift in Sources */,
+				FA798B5D2B520B4500977816 /* StandartTextField.swift in Sources */,
 				FADBCACA2AA4D4D300A28511 /* CityRouterInput.swift in Sources */,
 				FADBCAC22AA4D35E00A28511 /* CityViewInput.swift in Sources */,
 				FADBCAC02AA3EE6300A28511 /* CityRouter.swift in Sources */,
 				FADBCAC42AA4D37100A28511 /* CityViewOutput.swift in Sources */,
 				FADBCAC82AA4D3DF00A28511 /* CityPresenterModel.swift in Sources */,
+				FA798B622B52C5F600977816 /* UIFonts + Extensions.swift in Sources */,
 				FADBCACE2AA4EBCB00A28511 /* CityModuleInput.swift in Sources */,
+				FA798B602B52BC2D00977816 /* UIColor + Extension.swift in Sources */,
 				FADBCACC2AA4E8A600A28511 /* CityPresenter.swift in Sources */,
 				FADBCAA32AA39E4B00A28511 /* CityViewController.swift in Sources */,
+				FA798B5B2B520B3300977816 /* StandartButton.swift in Sources */,
 				FADBCA9F2AA39E4B00A28511 /* AppDelegate.swift in Sources */,
 				FAAEF83A2B51FEED00AF1A7D /* SceneDelegate.swift in Sources */,
 			);
@@ -278,6 +310,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = accentColor;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -338,6 +371,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = accentColor;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

@@ -2,7 +2,7 @@ import UIKit
 
 class CityViewController: UIViewController, CityViewInput {
     
-    private var cityTextField = UITextField()
+    private var cityTextField = StandartTextField()
     private var confirmButton = StandartButton()
     
     var output: CityViewOutput?
@@ -10,6 +10,7 @@ class CityViewController: UIViewController, CityViewInput {
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.viewDidLoad()
+        hideKeyboardWhenTappedAround()
     }
     
     // MARK: - CityViewInput
@@ -45,6 +46,7 @@ private extension CityViewController {
     
     func configureTextField(with placeholder: String) {
         cityTextField.placeholder = placeholder
+        cityTextField.setPadding(xInset: 15, yInset: 15)
         cityTextField.addTarget(self, action: #selector(cityTextFieldEdited), for: .editingChanged)
     }
     
@@ -61,7 +63,7 @@ private extension CityViewController {
     func constraintConfirmButton() {
         let constraints = [
             confirmButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            confirmButton.topAnchor.constraint(equalTo: cityTextField.bottomAnchor, constant: 20),
+            confirmButton.topAnchor.constraint(equalTo: cityTextField.bottomAnchor, constant: 25),
         ]
         NSLayoutConstraint.activate(constraints)
     }

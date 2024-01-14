@@ -13,5 +13,9 @@ extension UIColor {
     static var FontColor: UIColor {
         return UIColor(named: "Colors/FontColor")!
     }
+
+    static var accentOp: UIColor {
+        return UIColor(named: "Colors/AccentOp")!
+    }
 }
 

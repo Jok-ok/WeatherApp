@@ -18,9 +18,9 @@ final class CityPresenter: CityViewOutput, CityModuleInput {
         print(prompt)
     }
     
-    func cityTextFieldEdited(with prompt: String) {
+    func cityTextFieldEdited(with prompt: String) -> [String] {
         print(prompt)
+        return ["Some", "Data", "For", "Current", "Collection", "View"]
     }
-    
     
 }

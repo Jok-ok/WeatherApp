@@ -26,6 +26,10 @@
 		FADBCACA2AA4D4D300A28511 /* CityRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCAC92AA4D4D300A28511 /* CityRouterInput.swift */; };
 		FADBCACC2AA4E8A600A28511 /* CityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCACB2AA4E8A600A28511 /* CityPresenter.swift */; };
 		FADBCACE2AA4EBCB00A28511 /* CityModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCACD2AA4EBCB00A28511 /* CityModuleInput.swift */; };
+		FAFFD6432B557EA0008542A3 /* CitiesCollectionViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFFD6422B557EA0008542A3 /* CitiesCollectionViewAdapter.swift */; };
+		FAFFD6452B557F07008542A3 /* CitiesCollectionViewAdapterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFFD6442B557F07008542A3 /* CitiesCollectionViewAdapterOutput.swift */; };
+		FAFFD6482B5584FC008542A3 /* CityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFFD6472B5584FC008542A3 /* CityCollectionViewCell.swift */; };
+		FAFFD64A2B5587A3008542A3 /* CollectioViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFFD6492B5587A3008542A3 /* CollectioViewCellProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +54,10 @@
 		FADBCAC92AA4D4D300A28511 /* CityRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRouterInput.swift; sourceTree = "<group>"; };
 		FADBCACB2AA4E8A600A28511 /* CityPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPresenter.swift; sourceTree = "<group>"; };
 		FADBCACD2AA4EBCB00A28511 /* CityModuleInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModuleInput.swift; sourceTree = "<group>"; };
+		FAFFD6422B557EA0008542A3 /* CitiesCollectionViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesCollectionViewAdapter.swift; sourceTree = "<group>"; };
+		FAFFD6442B557F07008542A3 /* CitiesCollectionViewAdapterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesCollectionViewAdapterOutput.swift; sourceTree = "<group>"; };
+		FAFFD6472B5584FC008542A3 /* CityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCollectionViewCell.swift; sourceTree = "<group>"; };
+		FAFFD6492B5587A3008542A3 /* CollectioViewCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectioViewCellProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +140,7 @@
 		FADBCAB42AA3D22C00A28511 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FAFFD6412B557E7B008542A3 /* CitiesCollectionView */,
 				FADBCAA22AA39E4B00A28511 /* CityViewController.swift */,
 				FADBCAC12AA4D35E00A28511 /* CityViewInput.swift */,
 				FADBCAC32AA4D37100A28511 /* CityViewOutput.swift */,
@@ -192,6 +201,25 @@
 				FADBCAC72AA4D3DF00A28511 /* CityPresenterModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		FAFFD6412B557E7B008542A3 /* CitiesCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				FAFFD6462B557F6E008542A3 /* Adapter */,
+				FAFFD6472B5584FC008542A3 /* CityCollectionViewCell.swift */,
+			);
+			path = CitiesCollectionView;
+			sourceTree = "<group>";
+		};
+		FAFFD6462B557F6E008542A3 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				FAFFD6422B557EA0008542A3 /* CitiesCollectionViewAdapter.swift */,
+				FAFFD6442B557F07008542A3 /* CitiesCollectionViewAdapterOutput.swift */,
+				FAFFD6492B5587A3008542A3 /* CollectioViewCellProtocol.swift */,
+			);
+			path = Adapter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,14 +298,18 @@
 				FA798B5D2B520B4500977816 /* StandartTextField.swift in Sources */,
 				FADBCACA2AA4D4D300A28511 /* CityRouterInput.swift in Sources */,
 				FADBCAC22AA4D35E00A28511 /* CityViewInput.swift in Sources */,
+				FAFFD6432B557EA0008542A3 /* CitiesCollectionViewAdapter.swift in Sources */,
 				FADBCAC02AA3EE6300A28511 /* CityRouter.swift in Sources */,
 				FADBCAC42AA4D37100A28511 /* CityViewOutput.swift in Sources */,
+				FAFFD6452B557F07008542A3 /* CitiesCollectionViewAdapterOutput.swift in Sources */,
+				FAFFD64A2B5587A3008542A3 /* CollectioViewCellProtocol.swift in Sources */,
 				FADBCAC82AA4D3DF00A28511 /* CityPresenterModel.swift in Sources */,
 				FADBCACE2AA4EBCB00A28511 /* CityModuleInput.swift in Sources */,
 				FA798B602B52BC2D00977816 /* UIColor + Extension.swift in Sources */,
 				FA798B662B544A2800977816 /* UIViewController + Extension.swift in Sources */,
 				FADBCACC2AA4E8A600A28511 /* CityPresenter.swift in Sources */,
 				FADBCAA32AA39E4B00A28511 /* CityViewController.swift in Sources */,
+				FAFFD6482B5584FC008542A3 /* CityCollectionViewCell.swift in Sources */,
 				FA798B5B2B520B3300977816 /* StandartButton.swift in Sources */,
 				FADBCA9F2AA39E4B00A28511 /* AppDelegate.swift in Sources */,
 				FAAEF83A2B51FEED00AF1A7D /* SceneDelegate.swift in Sources */,

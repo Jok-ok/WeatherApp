@@ -10,6 +10,7 @@ final class CitiesCollectionViewAdapter: NSObject {
         self.collectionView = collectionView
         self.items = []
         super.init()
+        self.setupTable()
     }
     
     func configure(with cities: [String]) {
@@ -24,28 +25,30 @@ final class CitiesCollectionViewAdapter: NSObject {
     }
 }
 
+
+//MARK: - UICollectionViewDelegate
 extension CitiesCollectionViewAdapter: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        output.didSelectCityView(with: items[indexPath.item])
         collectionView.deselectItem(at: indexPath, animated: true)
     }
     
 }
-
+//MARK: - UICollectionViewDataSource
 extension CitiesCollectionViewAdapter: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        items.count
+        return items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: String(describing: CityCollectionViewCell.self),
                     for: indexPath) as? CityCollectionViewCell
-        else { return UICollectionViewCell ()}
+        else { return UICollectionViewCell() }
         
+    
         cell.configure(with: items[indexPath.item])
         
         return cell
     }
-    
-    
 }

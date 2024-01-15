@@ -5,6 +5,7 @@ class CityViewController: UIViewController, CityViewInput {
     private var cityTextField = StandartTextField()
     private var confirmButton = StandartButton()
     private var suggestionLabel = UILabel()
+    private var citiesCollectionView: CitiesCollectionViewAdapter?
     
     var output: CityViewOutput?
 
@@ -12,12 +13,15 @@ class CityViewController: UIViewController, CityViewInput {
         super.viewDidLoad()
         output?.viewDidLoad()
         hideKeyboardWhenTappedAround()
+        view.keyboardLayoutGuide.followsUndockedKeyboard = true
     }
     
     // MARK: - CityViewInput
     func setupInitialState(model: CityPresenterModel) {
         configureApperance(with: model)
+        setupCitiesCollectionView()
     }
+
 }
 
 // MARK: - Appearance
@@ -91,6 +95,55 @@ private extension CityViewController {
     }
 }
 
+//MARK: - CitiesCollectionView
+private extension CityViewController {
+    func setupCitiesCollectionView() {
+        let layout = setupCollectioViewLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(collectionView)
+        
+        citiesCollectionView = CitiesCollectionViewAdapter(output: self, collectionView: collectionView)
+        
+        let constraints = [
+            collectionView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.2),
+            collectionView.bottomAnchor.constraint(equalTo: suggestionLabel.topAnchor, constant: -25),
+            collectionView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            collectionView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: -40)
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    func setupCollectioViewLayout() -> UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(100),
+                                              heightDimension: .estimated(50))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .fractionalHeight(0.2))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.interItemSpacing = NSCollectionLayoutSpacing.fixed(10)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 20
+        
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        
+        return layout
+    }
+    
+    func constraintCitiesCollectionView() {
+        
+    }
+}
+
+extension CityViewController: CitiesCollectionViewAdapterOutput {
+    func didSelectCityView(with text: String) {
+        cityTextField.text = text
+    }
+}
+
 // MARK: - Actions
 private extension CityViewController {
     @objc func confirmCity() {
@@ -98,6 +151,7 @@ private extension CityViewController {
     }
     
     @objc func cityTextFieldEdited() {
-        output?.cityTextFieldEdited(with: cityTextField.text ?? "")
+        let cities = output?.cityTextFieldEdited(with: cityTextField.text ?? "") ?? []
+        citiesCollectionView?.configure(with: cities)
     }
 }

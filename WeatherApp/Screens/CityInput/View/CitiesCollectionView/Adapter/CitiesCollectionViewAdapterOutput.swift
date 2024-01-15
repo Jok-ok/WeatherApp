@@ -1,3 +1,3 @@
 protocol CitiesCollectionViewAdapterOutput {
-    func didSelectCityView()
+    func didSelectCityView(with text: String)
 }

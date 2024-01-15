@@ -4,6 +4,7 @@ class CityViewController: UIViewController, CityViewInput {
     
     private var cityTextField = StandartTextField()
     private var confirmButton = StandartButton()
+    private var suggestionLabel = UILabel()
     
     var output: CityViewOutput?
 
@@ -27,16 +28,28 @@ private extension CityViewController {
         
         configureTextField(with: model.cityEntryPlaceholder)
         configureConfirmButton(with: model.confirmButtonTitle)
+        configureSuggestionLabel(text: model.noSuggestion)
         
+        view.addSubview(suggestionLabel)
         view.addSubview(cityTextField)
         view.addSubview(confirmButton)
         
+        constraintSuggestionLabel()
         constraintTextField()
         constraintConfirmButton()
     }
     
     func configureNavigationController(with title: String) {
         self.title = title
+    }
+    
+    func configureSuggestionLabel(text: String){
+        suggestionLabel.text = text
+        suggestionLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        suggestionLabel.textColor = .accentColor
+        suggestionLabel.textAlignment = .center
+        suggestionLabel.numberOfLines = 0
+        suggestionLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func configureConfirmButton(with text: String) {
@@ -50,12 +63,11 @@ private extension CityViewController {
         cityTextField.addTarget(self, action: #selector(cityTextFieldEdited), for: .editingChanged)
     }
     
-    func constraintTextField() {
-        cityTextField.translatesAutoresizingMaskIntoConstraints = false
+    func constraintSuggestionLabel() {
         let constraints = [
-            cityTextField.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            cityTextField.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            cityTextField.widthAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.8)
+            suggestionLabel.bottomAnchor.constraint(equalTo: cityTextField.topAnchor, constant: -25),
+            suggestionLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            suggestionLabel.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 1, constant: -40)
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -64,6 +76,16 @@ private extension CityViewController {
         let constraints = [
             confirmButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             confirmButton.topAnchor.constraint(equalTo: cityTextField.bottomAnchor, constant: 25),
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    func constraintTextField() {
+        cityTextField.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+            cityTextField.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            cityTextField.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            cityTextField.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 1, constant: -40)
         ]
         NSLayoutConstraint.activate(constraints)
     }

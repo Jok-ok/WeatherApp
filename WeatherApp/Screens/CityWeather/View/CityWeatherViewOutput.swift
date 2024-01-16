@@ -1,0 +1,4 @@
+protocol CityWeatherViewOutput {
+    func viewDidLoad()
+    
+}

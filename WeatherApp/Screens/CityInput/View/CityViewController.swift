@@ -107,26 +107,26 @@ private extension CityViewController {
             return
         }
         
-        self.suggestionLabelBottomConstraint?.constant += 100
-        UIView.animate(withDuration: 0.5, delay: 0,
+        self.suggestionLabelBottomConstraint?.constant += suggestionLabel.frame.height
+        UIView.animate(withDuration: 0.6, delay: 0,
                        usingSpringWithDamping: 0.5,
-                       initialSpringVelocity: 4) { [weak self] in
+                       initialSpringVelocity: 5, animations: { [weak self] in
             guard let self = self else { return }
             self.suggestionLabel.layer.opacity = 0
-
             self.view.layoutIfNeeded()
-        }
-        
-        suggestionLabel.text = suggestionSecondText
-        self.suggestionLabelBottomConstraint?.constant -= 100
-        
-        UIView.animate(withDuration: 0.5, delay: 0,
-                       usingSpringWithDamping: 0.5,
-                       initialSpringVelocity: 4) { [weak self] in
+        } )
+        {   [weak self] val in
             guard let self = self else { return }
-            self.suggestionLabel.layer.opacity = 1
-
-            self.view.layoutIfNeeded()
+            self.suggestionLabel.text = suggestionSecondText
+            self.suggestionLabelBottomConstraint?.constant -= self.suggestionLabel.frame.height
+            
+            UIView.animate(withDuration: 0.6, delay: 0,
+                           usingSpringWithDamping: 0.5,
+                           initialSpringVelocity: 5, animations: { [weak self] in
+                guard let self = self else { return }
+                self.suggestionLabel.layer.opacity = 1
+                self.view.layoutIfNeeded()
+            } )
         }
     }
 }
@@ -136,6 +136,7 @@ private extension CityViewController {
     func setupCitiesCollectionView() {
         let layout = setupCollectioViewLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.isScrollEnabled = false
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)

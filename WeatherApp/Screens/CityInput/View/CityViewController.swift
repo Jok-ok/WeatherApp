@@ -4,9 +4,10 @@ class CityViewController: UIViewController, CityViewInput {
     private var cityTextField = StandartTextField()
     private var confirmButton = StandartButton()
     private var suggestionLabel = UILabel()
-    private var suggestionLabelBottomConstraint: NSLayoutConstraint?
     private var citiesCollectionView: CitiesCollectionViewAdapter?
     private var suggestionSecondText: String?
+    
+    private var suggestionLabelBottomConstraint: NSLayoutConstraint?
     
     var output: CityViewOutput?
 
@@ -107,18 +108,19 @@ private extension CityViewController {
             return
         }
         
-        self.suggestionLabelBottomConstraint?.constant += suggestionLabel.frame.height
+        self.suggestionLabelBottomConstraint?.constant = -25 + suggestionLabel.frame.height
         UIView.animate(withDuration: 0.6, delay: 0,
                        usingSpringWithDamping: 0.5,
                        initialSpringVelocity: 5, animations: { [weak self] in
             guard let self = self else { return }
             self.suggestionLabel.layer.opacity = 0
+
             self.view.layoutIfNeeded()
         } )
         {   [weak self] val in
             guard let self = self else { return }
             self.suggestionLabel.text = suggestionSecondText
-            self.suggestionLabelBottomConstraint?.constant -= self.suggestionLabel.frame.height
+            self.suggestionLabelBottomConstraint?.constant = -25
             
             UIView.animate(withDuration: 0.6, delay: 0,
                            usingSpringWithDamping: 0.5,

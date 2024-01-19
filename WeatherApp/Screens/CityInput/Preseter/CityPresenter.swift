@@ -1,8 +1,6 @@
-import Foundation
-
 final class CityPresenter: CityViewOutput, CityModuleInput {
     
-    var city = ""
+    private var city = ""
     
     weak var view: CityViewInput?
     
@@ -19,6 +17,7 @@ final class CityPresenter: CityViewOutput, CityModuleInput {
     }
     
     func cityTextFieldEdited(with prompt: String) -> [String] {
+        city = prompt
         print(prompt)
         return ["Some", "Data", "For", "Current", "Collection", "View"]
     }

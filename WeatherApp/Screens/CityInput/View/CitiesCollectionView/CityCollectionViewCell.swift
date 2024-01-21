@@ -26,7 +26,7 @@ private extension CityCollectionViewCell {
         
         configureCityLabel()
         
-        contentView.addSubview(cityLabel)
+        self.contentView.addSubview(cityLabel)
         
         constraintCityLabel()
     }

@@ -16,12 +16,17 @@ final class CitiesCollectionViewAdapter: NSObject {
     func configure(with cities: [String]) {
         self.items = cities
         collectionView.reloadData()
+        collectionView.collectionViewLayout.invalidateLayout()
+        collectionView.invalidateIntrinsicContentSize()
     }
     
     private func setupTable() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register( CityCollectionViewCell.self, forCellWithReuseIdentifier: String.init(describing: CityCollectionViewCell.self))
+    }
+    func collectionViewSize() -> CGSize {
+        collectionView.collectionViewLayout.collectionViewContentSize
     }
 }
 

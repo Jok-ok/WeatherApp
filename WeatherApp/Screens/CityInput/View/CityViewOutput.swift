@@ -4,5 +4,5 @@ protocol CityViewOutput {
     
     func confirmButtonPressed(with prompt: String)
     
-    func cityTextFieldEdited(with prompt: String) -> [String]
+    func cityTextFieldEdited(with prompt: String)
 }

@@ -1,3 +1,3 @@
 protocol CityCollectionViewCellProtocol {
-    func configure(with text: String)
+    func configure(with text: String, subtitle: String?) 
 }

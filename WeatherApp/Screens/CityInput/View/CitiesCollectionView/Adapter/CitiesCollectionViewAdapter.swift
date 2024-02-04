@@ -3,7 +3,7 @@ import UIKit
 final class CitiesCollectionViewAdapter: NSObject {
     private let output: CitiesCollectionViewAdapterOutput
     private let collectionView: UICollectionView
-    private var items: [String]
+    private var items: [Suggest]
     
     init(output: CitiesCollectionViewAdapterOutput, collectionView: UICollectionView) {
         self.output = output
@@ -13,11 +13,9 @@ final class CitiesCollectionViewAdapter: NSObject {
         self.setupTable()
     }
     
-    func configure(with cities: [String]) {
-        self.items = cities
+    func configure(with suggests: [Suggest]) {
+        self.items = suggests
         collectionView.reloadData()
-        collectionView.collectionViewLayout.invalidateLayout()
-        collectionView.invalidateIntrinsicContentSize()
     }
     
     private func setupTable() {
@@ -25,16 +23,13 @@ final class CitiesCollectionViewAdapter: NSObject {
         collectionView.dataSource = self
         collectionView.register( CityCollectionViewCell.self, forCellWithReuseIdentifier: String.init(describing: CityCollectionViewCell.self))
     }
-    func collectionViewSize() -> CGSize {
-        collectionView.collectionViewLayout.collectionViewContentSize
-    }
 }
 
 
 //MARK: - UICollectionViewDelegate
 extension CitiesCollectionViewAdapter: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        output.didSelectCityView(with: items[indexPath.item])
+        output.didSelectCityView(with: items[indexPath.item].title.text)
         collectionView.deselectItem(at: indexPath, animated: true)
     }
     
@@ -52,7 +47,7 @@ extension CitiesCollectionViewAdapter: UICollectionViewDataSource {
         else { return UICollectionViewCell() }
         
     
-        cell.configure(with: items[indexPath.item])
+        cell.configure(with: items[indexPath.item].title.text, subtitle: items[indexPath.item].subtitle?.text)
         
         return cell
     }

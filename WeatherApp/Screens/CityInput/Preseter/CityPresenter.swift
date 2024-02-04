@@ -1,3 +1,5 @@
+import Foundation
+
 final class CityPresenter: CityViewOutput, CityModuleInput {
     
     private var city = ""
@@ -8,6 +10,8 @@ final class CityPresenter: CityViewOutput, CityModuleInput {
     
     var output: CityModuleOutput?
     
+    var suggestNetworkService: SuggestNetworkServiceProtocol?
+    
     func viewDidLoad() {
         view?.setupInitialState(model: CityPresenterModel())
     }
@@ -16,10 +20,20 @@ final class CityPresenter: CityViewOutput, CityModuleInput {
         print(prompt)
     }
     
-    func cityTextFieldEdited(with prompt: String) -> [String] {
+    func cityTextFieldEdited(with prompt: String) {
+        
         city = prompt
-        print(prompt)
-        return ["Some", "Data", "For", "Current", "Collection", "View"]
+        suggestNetworkService?.getSuggests(for: prompt, completion: { [weak self] result in
+            
+            DispatchQueue.main.async { [weak self] in
+                switch result {
+                case .success(let suggests):
+                    self?.view?.configureCollectionViewData(with: suggests)
+                case .failure(let error):
+                    self?.router?.showErrorMessageAlert(with: error.customDescription)
+                }
+            }
+        })
     }
     
 }

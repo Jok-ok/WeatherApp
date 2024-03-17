@@ -16,15 +16,19 @@ final class CityCollectionViewCell: UICollectionViewCell, CityCollectionViewCell
     
     func configure(with text: String, subtitle: String?=nil) {
         localityLabel.text = text
-        if subtitle != nil {
-            localityLabelBottomConstraint?.isActive = false
-            provinceLabel.text = subtitle
-            provinceLabel.isHidden = false
-        } else {
-            localityLabelBottomConstraint?.isActive = true
-            provinceLabel.isHidden = true
+        provinceLabel.text = subtitle
+    }
+    
+    func onTouchDownAnimation() {
+        UIView.animate(withDuration: 0.25, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, options: .curveEaseInOut) {
+            self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         }
-        contentView.layoutIfNeeded()
+    }
+    
+    func onTouchUpAnimation() {
+        UIView.animate(withDuration: 0.25, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, options: .curveEaseInOut) {
+            self.transform = CGAffineTransform.identity
+        }
     }
     
 }
@@ -32,8 +36,6 @@ final class CityCollectionViewCell: UICollectionViewCell, CityCollectionViewCell
 // MARK: - Appearance
 private extension CityCollectionViewCell {
     func configureAppearance() {
-        contentView.backgroundColor = .accentColor
-        contentView.layer.cornerRadius = 10
         configureLocalityLabel()
         configureProvinceLabel()
         
@@ -46,24 +48,24 @@ private extension CityCollectionViewCell {
     
     
     func configureLocalityLabel() {
-        localityLabel.textColor = .buttonFontColor
+        localityLabel.textColor = .accentColor
         localityLabel.font = .systemFont(ofSize: 20, weight: .semibold)
         localityLabel.numberOfLines = 3
         localityLabel.lineBreakMode = .byClipping
-        localityLabel.textAlignment = .center
+        localityLabel.textAlignment = .left
         localityLabel.adjustsFontSizeToFitWidth = true
         localityLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func configureProvinceLabel() {
-        provinceLabel.textColor = .accentColor
+        provinceLabel.textColor = .accentOp
         provinceLabel.backgroundColor = .backgroundColor
         provinceLabel.layer.cornerRadius = 10
         provinceLabel.layer.masksToBounds = true
         provinceLabel.font = .boldSystemFont(ofSize: 14)
         provinceLabel.numberOfLines = 10
         provinceLabel.lineBreakMode = .byWordWrapping
-        provinceLabel.textAlignment = .center
+        provinceLabel.textAlignment = .left
         provinceLabel.adjustsFontSizeToFitWidth = true
         provinceLabel.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -86,7 +88,6 @@ private extension CityCollectionViewCell {
             provinceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             provinceLabel.topAnchor.constraint(equalTo: localityLabel.bottomAnchor, constant: 5),
             provinceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            provinceLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.45 )
         ]
         
         NSLayoutConstraint.activate(constraints)

@@ -1,7 +1,7 @@
 import Foundation
 import CoreLocation
 
-class LocationManager {
+class LocationService {
     private let locationManager = CLLocationManager()
     
     func getLocation() {

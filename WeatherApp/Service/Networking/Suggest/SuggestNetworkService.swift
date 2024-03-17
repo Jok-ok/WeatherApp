@@ -8,7 +8,7 @@ class SuggestNetworkService: SuggestNetworkServiceProtocol {
         let queryItems = [
             URLQueryItem(name: "apikey", value: apiKey),
             URLQueryItem(name: "text", value: prompt),
-            URLQueryItem(name: "types", value: "city,ar"),
+            URLQueryItem(name: "types", value: "locality"),
             URLQueryItem(name: "lang", value: "ru"),
             URLQueryItem(name: "results", value: "8")
         ]

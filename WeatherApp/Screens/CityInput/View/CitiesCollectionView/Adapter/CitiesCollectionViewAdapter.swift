@@ -3,18 +3,19 @@ import UIKit
 final class CitiesCollectionViewAdapter: NSObject {
     private let output: CitiesCollectionViewAdapterOutput
     private let collectionView: UICollectionView
-    private var items: [Suggest]
+    private var titles = [String]()
+    private var subtitles = [String?]()
     
     init(output: CitiesCollectionViewAdapterOutput, collectionView: UICollectionView) {
         self.output = output
         self.collectionView = collectionView
-        self.items = []
         super.init()
         self.setupTable()
     }
     
-    func configure(with suggests: [Suggest]) {
-        self.items = suggests
+    func configure(with titles: [String], subtitles: [String?]) {
+        self.titles = titles
+        self.subtitles = subtitles
         collectionView.reloadData()
     }
     
@@ -29,15 +30,18 @@ final class CitiesCollectionViewAdapter: NSObject {
 //MARK: - UICollectionViewDelegate
 extension CitiesCollectionViewAdapter: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        output.didSelectCityView(with: items[indexPath.item].title.text)
+        output.didSelectCityView(with: titles[indexPath.item])
         collectionView.deselectItem(at: indexPath, animated: true)
     }
     
 }
 //MARK: - UICollectionViewDataSource
 extension CitiesCollectionViewAdapter: UICollectionViewDataSource {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        output.collectionViewDidScroll()
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items.count
+        return titles.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -47,8 +51,22 @@ extension CitiesCollectionViewAdapter: UICollectionViewDataSource {
         else { return UICollectionViewCell() }
         
     
-        cell.configure(with: items[indexPath.item].title.text, subtitle: items[indexPath.item].subtitle?.text)
+        cell.configure(with: titles[indexPath.item], subtitle: subtitles[indexPath.item])
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CityCollectionViewCell else { return }
+        cell.onTouchDownAnimation()
+
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CityCollectionViewCell else { return }
+        
+        cell.onTouchUpAnimation()
+        
+        
     }
 }

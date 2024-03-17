@@ -1,16 +1,17 @@
 import UIKit
 
 class CityViewController: UIViewController, CityViewInput {
-    private var currentLocationLabel = UILabel()
-    private var currentTempLabel = UILabel()
+    // MARK: - Private properties
+    private lazy var currentLocationLabel = UILabel()
+    private lazy var currentTempLabel = UILabel()
     private var citiesCollectionViewAdapter: CitiesCollectionViewAdapter?
     private var citiesCollectionView: UICollectionView?
-    private var suggestionLabel = UILabel()
-    private var cityTextField = StandartTextField()
-    private var confirmButton = StandartButton()
+    private lazy var suggestionLabel = UILabel()
+    private lazy var cityTextField = StandartTextField()
+    private lazy var confirmButton = StandartButton()
+    private lazy var collectionViewGradient = CAGradientLayer()
     
     private var suggestionSecondText: String?
-    
     private var collectionViewHeightConstraint: NSLayoutConstraint?
     private var suggestionLabelBottomConstraint: NSLayoutConstraint?
     
@@ -23,16 +24,21 @@ class CityViewController: UIViewController, CityViewInput {
         view.keyboardLayoutGuide.followsUndockedKeyboard = true
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateCollectionViewGradient()
+    }
+    
     // MARK: - CityViewInput
     func setupInitialState(model: CityPresenterModel) {
         setupCitiesCollectionView()
         configureApperance(with: model)
     }
     
-    func configureCollectionViewData(with suggests: [Suggest]) {
+    func configureCollectionViewData(with titles: [String], subtitles: [String?]) {
         animateSuggestion()
         hideCollectionViewWithAnimation()
-        citiesCollectionViewAdapter?.configure(with: suggests)
+        citiesCollectionViewAdapter?.configure(with: titles, subtitles: subtitles)
         showeCollectionViewWithAnimation()
     }
     
@@ -40,6 +46,8 @@ class CityViewController: UIViewController, CityViewInput {
 
 // MARK: - Appearance
 private extension CityViewController {
+    
+    // MARK: - UIConfiguration
     func configureApperance(with model: CityPresenterModel) {
         configureNavigationController(with: model.title)
         self.view.backgroundColor = .white
@@ -52,6 +60,7 @@ private extension CityViewController {
         configureTextField(with: model.cityEntryPlaceholder)
         configureConfirmButton(with: model.confirmButtonTitle)
         configureSuggestionLabel(with: model.noSuggestion)
+        configureGradient()
         
         view.addSubview(currentLocationLabel)
         view.addSubview(currentTempLabel)
@@ -110,6 +119,21 @@ private extension CityViewController {
         cityTextField.addTarget(self, action: #selector(cityTextFieldEdited), for: .editingChanged)
     }
     
+    func configureGradient() {
+        guard let citiesCollectionView else { return }
+        collectionViewGradient.frame = citiesCollectionView.bounds
+        collectionViewGradient.delegate = self
+        collectionViewGradient.colors = [
+            UIColor(white: 1, alpha: 0).cgColor,
+            UIColor(white: 1, alpha: 1).cgColor,
+            UIColor(white: 1, alpha: 1).cgColor,
+            UIColor(white: 1, alpha: 0).cgColor
+        ]
+        collectionViewGradient.locations = [0, 0.05, 0.9, 1]
+        citiesCollectionView.layer.mask = collectionViewGradient
+    }
+    
+    // MARK: - Constraints
     func constraintCurrentWeatherLabel() {
         let constraints = [
             currentLocationLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
@@ -129,14 +153,18 @@ private extension CityViewController {
     func constraintCitiesCollectionView() {
         guard let citiesCollectionView = citiesCollectionView else { return }
         
-        let heightConstraint = citiesCollectionView.heightAnchor.constraint(lessThanOrEqualToConstant: 100)
+        let heightConstraint = citiesCollectionView.heightAnchor.constraint(
+            equalTo: view.safeAreaLayoutGuide.heightAnchor,
+            multiplier: 0.18)
+        heightConstraint.priority = .fittingSizeLevel
         collectionViewHeightConstraint = heightConstraint
         
         let constraints = [
-            heightConstraint,
+            //            heightConstraint,
+            citiesCollectionView.topAnchor.constraint(equalTo: currentTempLabel.bottomAnchor, constant: 25),
             citiesCollectionView.bottomAnchor.constraint(equalTo: suggestionLabel.topAnchor, constant: -25),
             citiesCollectionView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            citiesCollectionView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+            citiesCollectionView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: -40),
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -157,10 +185,10 @@ private extension CityViewController {
     
     func constraintConfirmButton() {
         let constraints = [
+            confirmButton.leadingAnchor.constraint(equalTo: cityTextField.trailingAnchor, constant: 5),
             confirmButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             confirmButton.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -15),
             confirmButton.heightAnchor.constraint(equalTo: cityTextField.heightAnchor),
-            confirmButton.widthAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.19)
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -171,10 +199,11 @@ private extension CityViewController {
             cityTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             cityTextField.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -15),
             cityTextField.trailingAnchor.constraint(equalTo: confirmButton.leadingAnchor, constant: -15),
+            cityTextField.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.65)
         ]
         NSLayoutConstraint.activate(constraints)
     }
-    
+    // MARK: - Animations
     func animateSuggestion() {
         if suggestionLabel.text == suggestionSecondText {
             return
@@ -210,8 +239,9 @@ private extension CityViewController {
         let layout = setupCollectioViewLayout()
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.isScrollEnabled = false
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.layer.opacity = 0
+        collectionView.contentInset = .init(top: 10, left: 0, bottom: 10, right: 0)
         collectionView.backgroundColor = UIColor.clear.withAlphaComponent(0)
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -223,14 +253,14 @@ private extension CityViewController {
     
     func setupCollectioViewLayout() -> UICollectionViewCompositionalLayout {
         let itemSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(300),
-            heightDimension: .absolute(100))
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(75))
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(300),
-                                               heightDimension: .absolute(100))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 3)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .estimated(75))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item,])
         group.interItemSpacing = NSCollectionLayoutSpacing.fixed(10)
         
         
@@ -238,11 +268,19 @@ private extension CityViewController {
         section.interGroupSpacing = 15
         section.contentInsets = .init(top: 0, leading: 20,
                                       bottom: 0, trailing: 20)
-        section.orthogonalScrollingBehavior = .continuous
         
         let layout = UICollectionViewCompositionalLayout(section: section)
         
         return layout
+    }
+    
+    func updateCollectionViewGradient() {
+        guard let citiesCollectionView else {return}
+        collectionViewGradient.frame = CGRect(
+            x: 0,
+            y: citiesCollectionView.contentOffset.y,
+            width: citiesCollectionView.bounds.width,
+            height: citiesCollectionView.bounds.height)
     }
     
     func hideCollectionViewWithAnimation() {
@@ -263,6 +301,9 @@ extension CityViewController: CitiesCollectionViewAdapterOutput {
     func didSelectCityView(with text: String) {
         cityTextField.text = text
     }
+    func collectionViewDidScroll() {
+        updateCollectionViewGradient()
+    }
 }
 
 // MARK: - Actions
@@ -273,5 +314,12 @@ private extension CityViewController {
     
     @objc func cityTextFieldEdited() {
         output?.cityTextFieldEdited(with: cityTextField.text ?? "")
+    }
+}
+
+// MARK: - CALayerDelegate
+extension CityViewController: CALayerDelegate {
+    func action(for layer: CALayer, forKey event: String) -> CAAction? {
+        return NSNull()
     }
 }

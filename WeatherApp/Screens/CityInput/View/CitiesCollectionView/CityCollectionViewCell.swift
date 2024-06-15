@@ -1,7 +1,9 @@
 import UIKit
 
 final class CityCollectionViewCell: UICollectionViewCell, CityCollectionViewCellProtocol {
-    private let cityLabel = UILabel()
+    private let localityLabel = UILabel()
+    private var localityLabelBottomConstraint: NSLayoutConstraint?
+    private let provinceLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -12,38 +14,79 @@ final class CityCollectionViewCell: UICollectionViewCell, CityCollectionViewCell
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    func configure(with text: String) {
-        cityLabel.text = text
+    func configure(with text: String, subtitle: String?=nil) {
+        localityLabel.text = text
+        provinceLabel.text = subtitle
     }
+    
+    func onTouchDownAnimation() {
+        UIView.animate(withDuration: 0.25, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, options: .curveEaseInOut) {
+            self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        }
+    }
+    
+    func onTouchUpAnimation() {
+        UIView.animate(withDuration: 0.25, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, options: .curveEaseInOut) {
+            self.transform = CGAffineTransform.identity
+        }
+    }
+    
 }
 
 // MARK: - Appearance
 private extension CityCollectionViewCell {
     func configureAppearance() {
-        backgroundColor = .accentColor
-        self.layer.cornerRadius = 10
+        configureLocalityLabel()
+        configureProvinceLabel()
         
-        configureCityLabel()
+        contentView.addSubview(localityLabel)
+        contentView.addSubview(provinceLabel)
         
-        self.contentView.addSubview(cityLabel)
-        
-        constraintCityLabel()
+        constraintLocalityLabel()
+        constraintProvinceLabel()
     }
     
-    func configureCityLabel() {
-        cityLabel.font = .boldSystemFont(ofSize: 24)
-        cityLabel.textColor = .buttonFontColor
-        cityLabel.translatesAutoresizingMaskIntoConstraints = false
+    
+    func configureLocalityLabel() {
+        localityLabel.textColor = .accentColor
+        localityLabel.font = .systemFont(ofSize: 18, weight: .semibold)
+        localityLabel.numberOfLines = 3
+        localityLabel.lineBreakMode = .byClipping
+        localityLabel.textAlignment = .left
+        localityLabel.adjustsFontSizeToFitWidth = true
+        localityLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func constraintCityLabel() {
+    func configureProvinceLabel() {
+        provinceLabel.textColor = .accentOp
+        provinceLabel.font = .boldSystemFont(ofSize: 14)
+        provinceLabel.numberOfLines = 10
+        provinceLabel.lineBreakMode = .byWordWrapping
+        provinceLabel.textAlignment = .left
+        provinceLabel.adjustsFontSizeToFitWidth = true
+        provinceLabel.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func constraintLocalityLabel() {
         let constraints = [
-            cityLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            cityLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            cityLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            cityLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5)
+            localityLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            localityLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            localityLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5)
         ]
+        
+        localityLabelBottomConstraint = localityLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5)
+        
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    func constraintProvinceLabel() {
+        let constraints = [
+            provinceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            provinceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            provinceLabel.topAnchor.constraint(equalTo: localityLabel.bottomAnchor, constant: 5),
+            provinceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+        ]
+        
         NSLayoutConstraint.activate(constraints)
     }
 }

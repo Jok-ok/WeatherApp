@@ -1,3 +1,4 @@
 protocol CitiesCollectionViewAdapterOutput {
-    func didSelectCityView(with text: String)
+    func didSelectCityView(with title: String, subtitle: String?)
+    func collectionViewDidScroll()
 }

@@ -18,11 +18,9 @@ final class StandartButton: UIButton {
 private extension StandartButton {
     func configureAppearance() {
 
-        
         addTarget(self, action: #selector(onTouchDownAnimation), for: .touchDown)
         addTarget(self, action: #selector(onTouchUpAnimation), for: .touchUpInside)
         addTarget(self, action: #selector(onTouchUpAnimation), for: .touchUpOutside)
-        
         translatesAutoresizingMaskIntoConstraints = false
         
         if #available(iOS 15, *) {
@@ -36,7 +34,7 @@ private extension StandartButton {
             
             conf.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
                 var outcoming = incoming
-                outcoming.font = UIFont.boldSystemFont(ofSize: 24)
+                outcoming.font = UIFont.boldSystemFont(ofSize: 18)
                 return outcoming
             }
             

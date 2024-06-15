@@ -45,7 +45,7 @@ private extension StandartTextField {
         textAlignment = .center
         translatesAutoresizingMaskIntoConstraints = false
         textColor = .accentColor
-        font = .boldSystemFont(ofSize: 24)
+        font = .boldSystemFont(ofSize: 18)
 
         layer.borderWidth = 0
         layer.borderColor = UIColor.accentColor.cgColor

@@ -50,7 +50,7 @@ private extension CityViewController {
     // MARK: - UIConfiguration
     func configureApperance(with model: CityPresenterModel) {
         configureNavigationController(with: model.title)
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .backgroundColor
         suggestionSecondText = model.suggestionLabelText
         
         guard let citiesCollectionView = citiesCollectionView else { return }
@@ -79,7 +79,7 @@ private extension CityViewController {
     
     func configureCurrentWeatherLabel(with text: String) {
         currentLocationLabel.text = text
-        currentLocationLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        currentLocationLabel.font = UIFont.boldSystemFont(ofSize: 18)
         currentLocationLabel.textColor = .accentColor
         currentLocationLabel.textAlignment = .center
         currentLocationLabel.numberOfLines = 0
@@ -88,7 +88,7 @@ private extension CityViewController {
     
     func configureCurrentTempLabel(currentWeather: String) {
         currentTempLabel.text = currentWeather
-        currentTempLabel.font = .boldSystemFont(ofSize: 36)
+        currentTempLabel.font = .boldSystemFont(ofSize: 24)
         currentTempLabel.textColor = .accentColor
         currentTempLabel.textAlignment = .center
         currentTempLabel.numberOfLines = 0
@@ -101,7 +101,7 @@ private extension CityViewController {
     
     func configureSuggestionLabel(with text: String){
         suggestionLabel.text = text
-        suggestionLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        suggestionLabel.font = UIFont.boldSystemFont(ofSize: 18)
         suggestionLabel.textColor = .accentColor
         suggestionLabel.textAlignment = .center
         suggestionLabel.numberOfLines = 0
@@ -198,7 +198,6 @@ private extension CityViewController {
         let constraints = [
             cityTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             cityTextField.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -15),
-            cityTextField.trailingAnchor.constraint(equalTo: confirmButton.leadingAnchor, constant: -15),
             cityTextField.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.65)
         ]
         NSLayoutConstraint.activate(constraints)
@@ -298,8 +297,11 @@ private extension CityViewController {
 
 // MARK: - CollectionView output
 extension CityViewController: CitiesCollectionViewAdapterOutput {
-    func didSelectCityView(with text: String) {
-        cityTextField.text = text
+    func didSelectCityView(with title: String, subtitle: String?) {
+        cityTextField.text = title
+        if let subtitle {
+            cityTextField.text? += ", \(subtitle)"
+        }
     }
     func collectionViewDidScroll() {
         updateCollectionViewGradient()

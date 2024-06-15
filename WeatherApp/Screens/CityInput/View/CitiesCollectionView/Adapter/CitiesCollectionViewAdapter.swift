@@ -30,7 +30,7 @@ final class CitiesCollectionViewAdapter: NSObject {
 //MARK: - UICollectionViewDelegate
 extension CitiesCollectionViewAdapter: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        output.didSelectCityView(with: titles[indexPath.item])
+        output.didSelectCityView(with: titles[indexPath.item], subtitle: subtitles[indexPath.item])
         collectionView.deselectItem(at: indexPath, animated: true)
     }
     

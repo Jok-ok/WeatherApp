@@ -49,7 +49,7 @@ private extension CityCollectionViewCell {
     
     func configureLocalityLabel() {
         localityLabel.textColor = .accentColor
-        localityLabel.font = .systemFont(ofSize: 20, weight: .semibold)
+        localityLabel.font = .systemFont(ofSize: 18, weight: .semibold)
         localityLabel.numberOfLines = 3
         localityLabel.lineBreakMode = .byClipping
         localityLabel.textAlignment = .left
@@ -59,9 +59,6 @@ private extension CityCollectionViewCell {
     
     func configureProvinceLabel() {
         provinceLabel.textColor = .accentOp
-        provinceLabel.backgroundColor = .backgroundColor
-        provinceLabel.layer.cornerRadius = 10
-        provinceLabel.layer.masksToBounds = true
         provinceLabel.font = .boldSystemFont(ofSize: 14)
         provinceLabel.numberOfLines = 10
         provinceLabel.lineBreakMode = .byWordWrapping

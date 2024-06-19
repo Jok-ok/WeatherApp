@@ -1,7 +1,7 @@
 import Foundation
 
 class SuggestNetworkService: SuggestNetworkServiceProtocol {
-    private let apiKey = ""
+    private let apiKey = "8f58b806-72a4-4676-9d40-807168777b74"
     private let urlString = "https://suggest-maps.yandex.ru/v1/suggest"
     
     func getSuggests(for prompt: String, completion: @escaping (Result<[Suggest], SuggestAPIErrors>) -> ()) {

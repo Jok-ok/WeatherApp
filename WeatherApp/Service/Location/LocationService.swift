@@ -1,4 +1,3 @@
-import Foundation
 import CoreLocation
 
 class LocationService: NSObject, CLLocationManagerDelegate {
@@ -13,17 +12,6 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
     }
     
-    func startUpdatingLocation() {
-        locationManager.startUpdatingLocation()
-    }
-    func stopUpdationgLocation() {
-        locationManager.stopUpdatingLocation()
-    }
-    
-    func getLocation() -> Location? {
-        return location
-    }
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         
@@ -33,5 +21,18 @@ class LocationService: NSObject, CLLocationManagerDelegate {
                                      longitude: location.coordinate.longitude)
             delegate?.didUpdateLocation()
         }
+    }
+}
+
+extension LocationService: LocationServiceProtocol {
+    func startUpdatingLocation() {
+        locationManager.startUpdatingLocation()
+    }
+    func stopUpdationgLocation() {
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func getLocation() -> Location? {
+        return location
     }
 }

@@ -56,11 +56,12 @@ private extension CurrentWeatherTableViewCell {
     func constraintCityLabel() {
         cityLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        let insets = 10.0
+        let insets = 25.0
         
         NSLayoutConstraint.activate([
             cityLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: insets),
             cityLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -insets),
+            cityLabel.widthAnchor.constraint(lessThanOrEqualTo: contentView.widthAnchor, multiplier: 0.5, constant: -insets),
             cityLabel.leadingAnchor.constraint(equalTo: temperatureLabel.trailingAnchor, constant: insets),
             cityLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -insets),
         ])
@@ -74,6 +75,7 @@ private extension CurrentWeatherTableViewCell {
         NSLayoutConstraint.activate([
             temperatureLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: insets),
             temperatureLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: insets),
+            temperatureLabel.widthAnchor.constraint(lessThanOrEqualTo: contentView.widthAnchor, multiplier: 0.5, constant: -insets),
             temperatureLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -insets),
         ])
     }

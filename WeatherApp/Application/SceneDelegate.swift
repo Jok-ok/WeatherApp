@@ -19,9 +19,13 @@ private extension SceneDelegate {
         let navigationController = UINavigationController()
         let suggestNetworkService = SuggestNetworkService()
         let locationService = LocationService()
+        let geoCoderService = GeocoderNetworkService()
+        let geoObjectPersistanceService = GeoObjectPersistentService(coreDataStack: CoreDataStack.shared)
         let dependencies = CitySearchModuleConfigurator.Dependecies(navigationController: navigationController,
                                                                     suggestService: suggestNetworkService,
-                                                                    locationService: locationService)
+                                                                    locationService: locationService,
+                                                                    geocodeService: geoCoderService,
+                                                                    geoObjectPersistanceService: geoObjectPersistanceService)
         let viewController = CitySearchModuleConfigurator.configure(with: dependencies)
         
         navigationController.viewControllers = [viewController]

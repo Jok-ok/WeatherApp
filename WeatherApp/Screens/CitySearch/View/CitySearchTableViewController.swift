@@ -6,6 +6,7 @@ final class CitySearchTableViewController: UITableViewController {
     private lazy var tableViewAdapter = TableViewAdapter(tableView: tableView)
     private lazy var currentWeatherSection = TableViewSection<CurrentWeatherTableViewCell>()
     private lazy var citiesTableViewSection = TableViewSection<CityTableViewCell>()
+    private lazy var favoriteTableViewSection = TableViewSection<CityTableViewCell>()
     
     init(presenter: CitySearchPresenterProtocol) {
         self.presenter = presenter
@@ -19,6 +20,8 @@ final class CitySearchTableViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        addHideKeyboardGesture()
         presenter.viewDidLoad(with: self)
     }
 }
@@ -29,28 +32,30 @@ extension CitySearchTableViewController: CitySearchViewProtocol {
         
         configureSearchBar(with: model.searchPlaceholder, clearButtonText: model.searchCancelButtonText)
         
-        setupTableViewInitialState(with: SectionHeaderModel(headerText: model.currentWeatherSectionHeader),
-                                   cityHeaderViewModel: SectionHeaderModel(headerText: model.searchCitySectionHeader),
-                                   currentWeatherCellModel: model.currentWeatherModel)
+        setupTableViewInitialState(with: model.currentWeatherSectionHeader,
+                                   cityHeaderViewModel: model.searchCitySectionHeader,
+                                   favoriteSectionViewModel: model.favoriteSectionHeader)
         
     }
     
     private func setupTableViewInitialState(with weatherHeaderViewModel: SectionHeaderModel,
                                             cityHeaderViewModel: SectionHeaderModel,
-                                            currentWeatherCellModel: CurrentWeatherCellModel) {
+                                            favoriteSectionViewModel: HidebleSectionHeaderModel) {
         tableViewAdapter.register(cellType: CurrentWeatherTableViewCell.self)
         tableViewAdapter.register(headerFooterType: SectionHeaderView.self)
         tableViewAdapter.register(cellType: CityTableViewCell.self)
+        
+        let favoriteTableViewSectionHeader = TableViewHeaderFooter<HidebleSectionHeaderView>(cellModel: favoriteSectionViewModel)
         
         let currentWeatherHeader = TableViewHeaderFooter<SectionHeaderView>(cellModel: weatherHeaderViewModel)
         
         let cityHeader = TableViewHeaderFooter<SectionHeaderView>(cellModel: cityHeaderViewModel)
         
-        citiesTableViewSection.setHeaderCell(with: cityHeader)
+        favoriteTableViewSection.setHeaderCell(with: favoriteTableViewSectionHeader)
         currentWeatherSection.setHeaderCell(with: currentWeatherHeader)
+        citiesTableViewSection.setHeaderCell(with: cityHeader)
         
-        configureCurrentWeatherSection(with: currentWeatherCellModel)
-        
+        tableViewAdapter.append(section: favoriteTableViewSection)
         tableViewAdapter.append(section: currentWeatherSection)
         tableViewAdapter.append(section: citiesTableViewSection)
 
@@ -63,17 +68,52 @@ extension CitySearchTableViewController: CitySearchViewProtocol {
     
     func configureCurrentWeatherSection(with model: CurrentWeatherCellModel) {
         currentWeatherSection.items = [model]
-        tableViewAdapter.reloadSection(0)
+        tableViewAdapter.reloadSection(1)
     }
     
-    func configureCitiesTableViewSection(with models: [CityCellModel]) {
+    func configureSerchedCity(at row: Int, with model: PlaceCellModel) {
+        citiesTableViewSection.items[row] = model
+        tableViewAdapter.reloadRow(at: 2, row: row)
+    }
+    
+    func configureSearchedCitiesTableViewSection(with models: [PlaceCellModel]) {
         citiesTableViewSection.items = models
-        tableViewAdapter.reloadSection(1)
+        tableViewAdapter.reloadSection(2)
     }
     
     func configureCityTableViewSectionHeader(with text: String) {
         let cityHeader = TableViewHeaderFooter<SectionHeaderView>(cellModel: SectionHeaderModel(headerText: text))
         citiesTableViewSection.setHeaderCell(with: cityHeader)
+    }
+    
+    func configureFavoriteCitiesTableViewSection(with items: [PlaceCellModel]) {
+        favoriteTableViewSection.items = items
+        tableViewAdapter.reloadSection(0)
+    }
+    
+    func insertFavoriteCityInSection(with item: PlaceCellModel) {
+        favoriteTableViewSection.items.insert(item, at: 0)
+        tableViewAdapter.insertRow(at: 0, row: 0)
+    }
+    
+    func removeFavoriteCityInSection(from row: Int) {
+        favoriteTableViewSection.items.remove(at: row)
+        tableViewAdapter.removeRow(at: 0, row: row)
+    }
+    
+    func hideFavoriteSection() {
+        tableViewAdapter.hideSection(with: 0)
+        tableViewAdapter.reloadSection(0)
+    }
+    
+    func showFavoriteSection() {
+        tableViewAdapter.showSection(with: 0)
+        tableViewAdapter.reloadSection(0)
+    }
+    
+    func configureFavoriteSectionHeader(with model: HidebleSectionHeaderModel) {
+        let favoriteTableViewSectionHeader = TableViewHeaderFooter<HidebleSectionHeaderView>(cellModel: model)
+        favoriteTableViewSection.setHeaderCell(with: favoriteTableViewSectionHeader)
     }
 }
 

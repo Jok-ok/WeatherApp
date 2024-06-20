@@ -4,25 +4,32 @@ struct CitySearchViewModel {
     let title: String
     let searchPlaceholder: String
     
-    let searchCitySectionHeader: String
+    let favoriteSectionHeader: HidebleSectionHeaderModel
     
-    let currentWeatherSectionHeader: String
+    let currentWeatherSectionHeader: SectionHeaderModel
+    
+    let searchCitySectionHeader: SectionHeaderModel
 
     let searchCancelButtonText: String
     
-    let currentWeatherModel: CurrentWeatherCellModel
-    
-    let cityCellModels: [CityCellModel]
+    let cityCellModels: [PlaceCellModel]
 }
 
 extension CitySearchViewModel {
-    init(with staticStrings: CitySearchViewStaticStrings, currentWeatherModel: CurrentWeatherCellModel, cityCellModels: [CityCellModel] = []) {
+    init(with staticStrings: CitySearchViewStaticStrings,
+         favoriteSectionHeader: HidebleSectionHeaderModel,
+         currentWeatherSectionHeader: SectionHeaderModel,
+         searchCitySectionHeader: SectionHeaderModel,
+         cityCellModels: [PlaceCellModel] = []) {
+        
         title = staticStrings.title
         searchPlaceholder = staticStrings.searchPlaceholder
-        currentWeatherSectionHeader = staticStrings.currentWeatherSectionHeader
-        searchCitySectionHeader = staticStrings.greetingSearchCitySectionHeader
         searchCancelButtonText = staticStrings.searchCancelButtonText
-        self.currentWeatherModel = currentWeatherModel
+        
+        self.favoriteSectionHeader = favoriteSectionHeader
+        self.currentWeatherSectionHeader = currentWeatherSectionHeader
+        self.searchCitySectionHeader = searchCitySectionHeader
+        
         self.cityCellModels = cityCellModels
     }
 }

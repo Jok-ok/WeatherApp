@@ -3,12 +3,21 @@ import UIKit
 class TableViewAdapter: NSObject {
     private let tableView: UITableView
     private var sections: [TableViewSectionProtocol] = []
+    private var hidedSectionIndexes = Set<Int>()
     
     init(tableView: UITableView){
         self.tableView = tableView
         super.init()
         
         setupTable()
+    }
+    
+    func hideSection(with index: Int) {
+        hidedSectionIndexes.insert(index)
+    }
+    
+    func showSection(with index: Int) {
+        hidedSectionIndexes.remove(index)
     }
     
     func register<CellType: UITableViewCell>(cellType: CellType.Type) where CellType: CellIdentifiableProtocol {
@@ -36,12 +45,23 @@ class TableViewAdapter: NSObject {
         tableView.reloadData()
     }
     
-    func reloadSection(_ section: Int) {
-        tableView.reloadSections(IndexSet(integer: section), with: .automatic)
+    func reloadSection(_ section: Int, with animation: UITableView.RowAnimation = .automatic ) {
+        tableView.reloadSections(IndexSet(integer: section), with: animation)
     }
     
     func insertRow(at section: Int, row: Int) {
-        tableView.insertRows(at: [IndexPath(row: row, section: section)], with: .automatic)
+        if !hidedSectionIndexes.contains(section) {
+            tableView.insertRows(at: [IndexPath(row: row, section: section)], with: .automatic) }
+    }
+    
+    func removeRow(at section: Int, row: Int) {
+        if !hidedSectionIndexes.contains(section) {
+            tableView.deleteRows(at: [IndexPath(row: row, section: section)], with: .automatic) }
+    }
+    
+    func reloadRow(at section: Int, row: Int) {
+        if !hidedSectionIndexes.contains(section) {
+            tableView.reloadRows(at: [IndexPath(row: row, section: section)], with: .automatic) }
     }
 }
 
@@ -52,7 +72,8 @@ extension TableViewAdapter: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        sections[section].count
+        if hidedSectionIndexes.contains(section) { return 0 }
+        else { return sections[section].count }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

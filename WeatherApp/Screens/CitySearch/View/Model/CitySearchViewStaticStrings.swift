@@ -12,4 +12,9 @@ struct CitySearchViewStaticStrings {
     let searchCancelButtonText = "Отмена"
     
     let currentWeatherSectionHeader = "Текущее местоположение:"
+    
+    let favoriteSectionEmptyTitle = "Тут будет собрано Ваше любимое ❤️"
+    let favoriteSectionHidedTitle = "Мы скрыли ваше любимое"
+    let favoriteSectionShowedTitle = "Тут собрано ваше любимое ❤️"
 }
+

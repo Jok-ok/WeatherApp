@@ -1,6 +1,6 @@
 import CoreLocation
 
-class LocationService: NSObject, CLLocationManagerDelegate {
+final class LocationService: NSObject, CLLocationManagerDelegate {
     weak var delegate: LocationServiceDelegate?
     fileprivate let locationManager = CLLocationManager()
     var location: Location?
@@ -8,6 +8,10 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     override init() {
         super.init()
         
+        self.locationManager.requestAlwaysAuthorization()
+
+        self.locationManager.requestWhenInUseAuthorization()
+
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
     }
@@ -33,6 +37,7 @@ extension LocationService: LocationServiceProtocol {
     }
     
     func getLocation() -> Location? {
+        print("location \(location?.latitude), \(location?.longitude)")
         return location
     }
 }

@@ -57,10 +57,12 @@
 		FA2A36332C24E2D700267BE4 /* GeocodeAPIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A36322C24E2D700267BE4 /* GeocodeAPIEndpoint.swift */; };
 		FA2A36352C24E30800267BE4 /* APIEndpointProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A36342C24E30800267BE4 /* APIEndpointProtocol.swift */; };
 		FA2A36372C24EEB000267BE4 /* YandexWeatherAPIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A36362C24EEB000267BE4 /* YandexWeatherAPIEndpoint.swift */; };
-		FA2A363C2C25926500267BE4 /* OpenMeteoNetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A363B2C25926500267BE4 /* OpenMeteoNetworkServiceProtocol.swift */; };
+		FA2A363C2C25926500267BE4 /* WeatherNetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A363B2C25926500267BE4 /* WeatherNetworkServiceProtocol.swift */; };
 		FA2A363E2C25927300267BE4 /* OpenMeteoNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A363D2C25927300267BE4 /* OpenMeteoNetworkService.swift */; };
 		FA2A36402C25927F00267BE4 /* OpenMeteoAPIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A363F2C25927F00267BE4 /* OpenMeteoAPIEndpoint.swift */; };
 		FA2A36422C25928E00267BE4 /* OpenMeteoWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A36412C25928E00267BE4 /* OpenMeteoWeatherResponse.swift */; };
+		FA2A36442C25E08800267BE4 /* PlaceModelAfterDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A36432C25E08800267BE4 /* PlaceModelAfterDTO.swift */; };
+		FA2A36462C25E40F00267BE4 /* WeatherModelAfterDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A36452C25E40F00267BE4 /* WeatherModelAfterDTO.swift */; };
 		FA2C78662BA7863C00FB9D64 /* FontLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C78652BA7863C00FB9D64 /* FontLibrary.swift */; };
 		FA5C59052B56AC04005073D3 /* CityWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5C59042B56AC04005073D3 /* CityWeatherViewController.swift */; };
 		FA5C59072B56AC2F005073D3 /* CityWeatherPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5C59062B56AC2F005073D3 /* CityWeatherPresenter.swift */; };
@@ -81,7 +83,6 @@
 		FA892C3E2B6CD10E000D9298 /* YandexAPIWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA892C3D2B6CD10E000D9298 /* YandexAPIWeatherResponse.swift */; };
 		FA892C442B6D79C0000D9298 /* Suggest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA892C432B6D79C0000D9298 /* Suggest.swift */; };
 		FA892C482B6F83C8000D9298 /* APIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA892C472B6F83C8000D9298 /* APIErrors.swift */; };
-		FA892C4F2B6FBFD4000D9298 /* YandexWeatherNetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA892C4E2B6FBFD4000D9298 /* YandexWeatherNetworkServiceProtocol.swift */; };
 		FA892C532B6FCF8A000D9298 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA892C522B6FCF8A000D9298 /* LocationService.swift */; };
 		FAAEF83A2B51FEED00AF1A7D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAEF8392B51FEED00AF1A7D /* SceneDelegate.swift */; };
 		FADBCA9F2AA39E4B00A28511 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCA9E2AA39E4B00A28511 /* AppDelegate.swift */; };
@@ -140,10 +141,12 @@
 		FA2A36322C24E2D700267BE4 /* GeocodeAPIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeAPIEndpoint.swift; sourceTree = "<group>"; };
 		FA2A36342C24E30800267BE4 /* APIEndpointProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpointProtocol.swift; sourceTree = "<group>"; };
 		FA2A36362C24EEB000267BE4 /* YandexWeatherAPIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexWeatherAPIEndpoint.swift; sourceTree = "<group>"; };
-		FA2A363B2C25926500267BE4 /* OpenMeteoNetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMeteoNetworkServiceProtocol.swift; sourceTree = "<group>"; };
+		FA2A363B2C25926500267BE4 /* WeatherNetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkServiceProtocol.swift; sourceTree = "<group>"; };
 		FA2A363D2C25927300267BE4 /* OpenMeteoNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMeteoNetworkService.swift; sourceTree = "<group>"; };
 		FA2A363F2C25927F00267BE4 /* OpenMeteoAPIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMeteoAPIEndpoint.swift; sourceTree = "<group>"; };
 		FA2A36412C25928E00267BE4 /* OpenMeteoWeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMeteoWeatherResponse.swift; sourceTree = "<group>"; };
+		FA2A36432C25E08800267BE4 /* PlaceModelAfterDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModelAfterDTO.swift; sourceTree = "<group>"; };
+		FA2A36452C25E40F00267BE4 /* WeatherModelAfterDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModelAfterDTO.swift; sourceTree = "<group>"; };
 		FA2C78652BA7863C00FB9D64 /* FontLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLibrary.swift; sourceTree = "<group>"; };
 		FA5C59042B56AC04005073D3 /* CityWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherViewController.swift; sourceTree = "<group>"; };
 		FA5C59062B56AC2F005073D3 /* CityWeatherPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherPresenter.swift; sourceTree = "<group>"; };
@@ -164,7 +167,6 @@
 		FA892C3D2B6CD10E000D9298 /* YandexAPIWeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexAPIWeatherResponse.swift; sourceTree = "<group>"; };
 		FA892C432B6D79C0000D9298 /* Suggest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suggest.swift; sourceTree = "<group>"; };
 		FA892C472B6F83C8000D9298 /* APIErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrors.swift; sourceTree = "<group>"; };
-		FA892C4E2B6FBFD4000D9298 /* YandexWeatherNetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexWeatherNetworkServiceProtocol.swift; sourceTree = "<group>"; };
 		FA892C522B6FCF8A000D9298 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		FAAEF8392B51FEED00AF1A7D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FADBCA9B2AA39E4B00A28511 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -319,6 +321,8 @@
 		FA08E2532C20909300CF63A0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FA2A36432C25E08800267BE4 /* PlaceModelAfterDTO.swift */,
+				FA2A36452C25E40F00267BE4 /* WeatherModelAfterDTO.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -404,7 +408,6 @@
 			children = (
 				FA892C4A2B6FBF9E000D9298 /* Model */,
 				FA892C332B6BA449000D9298 /* YandexWeatherNetworkService.swift */,
-				FA892C4E2B6FBFD4000D9298 /* YandexWeatherNetworkServiceProtocol.swift */,
 				FA2A36362C24EEB000267BE4 /* YandexWeatherAPIEndpoint.swift */,
 			);
 			path = YandexWeather;
@@ -414,7 +417,6 @@
 			isa = PBXGroup;
 			children = (
 				FA2A363A2C25922C00267BE4 /* Model */,
-				FA2A363B2C25926500267BE4 /* OpenMeteoNetworkServiceProtocol.swift */,
 				FA2A363D2C25927300267BE4 /* OpenMeteoNetworkService.swift */,
 				FA2A363F2C25927F00267BE4 /* OpenMeteoAPIEndpoint.swift */,
 			);
@@ -528,6 +530,7 @@
 		FA892C382B6CCF5C000D9298 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				FA2A363B2C25926500267BE4 /* WeatherNetworkServiceProtocol.swift */,
 				FA2A36392C25921500267BE4 /* OpenMeteo */,
 				FA2A36382C2591DF00267BE4 /* YandexWeather */,
 			);
@@ -537,9 +540,9 @@
 		FA892C392B6CCF64000D9298 /* Geocode */ = {
 			isa = PBXGroup;
 			children = (
+				FA2A362D2C244F9000267BE4 /* GeocoderNetworkServiceProtocol.swift */,
 				FA892C4B2B6FBFA4000D9298 /* Model */,
 				FA892C352B6BA4E7000D9298 /* GeocoderNetworkService.swift */,
-				FA2A362D2C244F9000267BE4 /* GeocoderNetworkServiceProtocol.swift */,
 				FA2A36322C24E2D700267BE4 /* GeocodeAPIEndpoint.swift */,
 			);
 			path = Geocode;
@@ -742,7 +745,7 @@
 				FA08E2372C20678F00CF63A0 /* StandartButton.swift in Sources */,
 				FA08E2432C20761100CF63A0 /* SearchController.swift in Sources */,
 				FA7D32252B8DEB6C0060A42B /* LocationModel.swift in Sources */,
-				FA892C4F2B6FBFD4000D9298 /* YandexWeatherNetworkServiceProtocol.swift in Sources */,
+				FA2A36462C25E40F00267BE4 /* WeatherModelAfterDTO.swift in Sources */,
 				FA5C59152B56AE00005073D3 /* CityWeatherRouterInput.swift in Sources */,
 				FA08E26D2C21E4BB00CF63A0 /* PlaceCellModel.swift in Sources */,
 				FA08E2652C21E18B00CF63A0 /* SectionHeaderView.swift in Sources */,
@@ -755,6 +758,7 @@
 				FA08E2492C208DEB00CF63A0 /* CitySearchModuleConfigurator.swift in Sources */,
 				FA08E22D2C20675300CF63A0 /* CellConfigurableProtocol.swift in Sources */,
 				FA08E2402C2074A100CF63A0 /* CitySearchTableViewController.swift in Sources */,
+				FA2A36442C25E08800267BE4 /* PlaceModelAfterDTO.swift in Sources */,
 				FA2A363E2C25927300267BE4 /* OpenMeteoNetworkService.swift in Sources */,
 				FA5C590D2B56AD30005073D3 /* CityWeatherModuleOutput.swift in Sources */,
 				FA08E2292C20675300CF63A0 /* CollectionViewCellProtocol.swift in Sources */,
@@ -778,7 +782,7 @@
 				FA2A36332C24E2D700267BE4 /* GeocodeAPIEndpoint.swift in Sources */,
 				FA5C59192B56AE89005073D3 /* CityWeatherViewOutput.swift in Sources */,
 				FA892C3B2B6CCF7F000D9298 /* SuggestNetworkServiceProtocol.swift in Sources */,
-				FA2A363C2C25926500267BE4 /* OpenMeteoNetworkServiceProtocol.swift in Sources */,
+				FA2A363C2C25926500267BE4 /* WeatherNetworkServiceProtocol.swift in Sources */,
 				FA08E24D2C208E4200CF63A0 /* CitySearchViewProtocol.swift in Sources */,
 				FA5C590F2B56AD47005073D3 /* CityWeatherModuleInput.swift in Sources */,
 				FA08E2332C20675300CF63A0 /* ModuleTransitionableProtocol.swift in Sources */,

@@ -37,7 +37,7 @@
 		FA08E25F2C219B5900CF63A0 /* UISearchBar + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08E25E2C219B5900CF63A0 /* UISearchBar + Extension.swift */; };
 		FA08E2652C21E18B00CF63A0 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08E2642C21E18B00CF63A0 /* SectionHeaderView.swift */; };
 		FA08E2672C21E28100CF63A0 /* SectionHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08E2662C21E28100CF63A0 /* SectionHeaderModel.swift */; };
-		FA08E2692C21E49A00CF63A0 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08E2682C21E49A00CF63A0 /* CityTableViewCell.swift */; };
+		FA08E2692C21E49A00CF63A0 /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08E2682C21E49A00CF63A0 /* PlaceTableViewCell.swift */; };
 		FA08E26B2C21E4B000CF63A0 /* CurrentWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08E26A2C21E4B000CF63A0 /* CurrentWeatherTableViewCell.swift */; };
 		FA08E26D2C21E4BB00CF63A0 /* PlaceCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08E26C2C21E4BB00CF63A0 /* PlaceCellModel.swift */; };
 		FA08E26F2C21E4D100CF63A0 /* CurrentWeatherCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08E26E2C21E4D100CF63A0 /* CurrentWeatherCellModel.swift */; };
@@ -56,6 +56,11 @@
 		FA2A36312C24E2A100267BE4 /* APINetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A36302C24E2A100267BE4 /* APINetworkManager.swift */; };
 		FA2A36332C24E2D700267BE4 /* GeocodeAPIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A36322C24E2D700267BE4 /* GeocodeAPIEndpoint.swift */; };
 		FA2A36352C24E30800267BE4 /* APIEndpointProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A36342C24E30800267BE4 /* APIEndpointProtocol.swift */; };
+		FA2A36372C24EEB000267BE4 /* YandexWeatherAPIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A36362C24EEB000267BE4 /* YandexWeatherAPIEndpoint.swift */; };
+		FA2A363C2C25926500267BE4 /* OpenMeteoNetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A363B2C25926500267BE4 /* OpenMeteoNetworkServiceProtocol.swift */; };
+		FA2A363E2C25927300267BE4 /* OpenMeteoNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A363D2C25927300267BE4 /* OpenMeteoNetworkService.swift */; };
+		FA2A36402C25927F00267BE4 /* OpenMeteoAPIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A363F2C25927F00267BE4 /* OpenMeteoAPIEndpoint.swift */; };
+		FA2A36422C25928E00267BE4 /* OpenMeteoWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A36412C25928E00267BE4 /* OpenMeteoWeatherResponse.swift */; };
 		FA2C78662BA7863C00FB9D64 /* FontLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C78652BA7863C00FB9D64 /* FontLibrary.swift */; };
 		FA5C59052B56AC04005073D3 /* CityWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5C59042B56AC04005073D3 /* CityWeatherViewController.swift */; };
 		FA5C59072B56AC2F005073D3 /* CityWeatherPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5C59062B56AC2F005073D3 /* CityWeatherPresenter.swift */; };
@@ -70,13 +75,13 @@
 		FA7D32232B8DEB4C0060A42B /* LocationServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7D32222B8DEB4C0060A42B /* LocationServiceDelegate.swift */; };
 		FA7D32252B8DEB6C0060A42B /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7D32242B8DEB6C0060A42B /* LocationModel.swift */; };
 		FA892C322B6BA42C000D9298 /* SuggestNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA892C312B6BA42C000D9298 /* SuggestNetworkService.swift */; };
-		FA892C342B6BA449000D9298 /* WeatherNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA892C332B6BA449000D9298 /* WeatherNetworkService.swift */; };
+		FA892C342B6BA449000D9298 /* YandexWeatherNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA892C332B6BA449000D9298 /* YandexWeatherNetworkService.swift */; };
 		FA892C362B6BA4E7000D9298 /* GeocoderNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA892C352B6BA4E7000D9298 /* GeocoderNetworkService.swift */; };
 		FA892C3B2B6CCF7F000D9298 /* SuggestNetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA892C3A2B6CCF7F000D9298 /* SuggestNetworkServiceProtocol.swift */; };
-		FA892C3E2B6CD10E000D9298 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA892C3D2B6CD10E000D9298 /* Weather.swift */; };
+		FA892C3E2B6CD10E000D9298 /* YandexAPIWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA892C3D2B6CD10E000D9298 /* YandexAPIWeatherResponse.swift */; };
 		FA892C442B6D79C0000D9298 /* Suggest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA892C432B6D79C0000D9298 /* Suggest.swift */; };
-		FA892C482B6F83C8000D9298 /* SuggestAPIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA892C472B6F83C8000D9298 /* SuggestAPIErrors.swift */; };
-		FA892C4F2B6FBFD4000D9298 /* WeatherNetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA892C4E2B6FBFD4000D9298 /* WeatherNetworkServiceProtocol.swift */; };
+		FA892C482B6F83C8000D9298 /* APIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA892C472B6F83C8000D9298 /* APIErrors.swift */; };
+		FA892C4F2B6FBFD4000D9298 /* YandexWeatherNetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA892C4E2B6FBFD4000D9298 /* YandexWeatherNetworkServiceProtocol.swift */; };
 		FA892C532B6FCF8A000D9298 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA892C522B6FCF8A000D9298 /* LocationService.swift */; };
 		FAAEF83A2B51FEED00AF1A7D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAEF8392B51FEED00AF1A7D /* SceneDelegate.swift */; };
 		FADBCA9F2AA39E4B00A28511 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBCA9E2AA39E4B00A28511 /* AppDelegate.swift */; };
@@ -115,7 +120,7 @@
 		FA08E25E2C219B5900CF63A0 /* UISearchBar + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar + Extension.swift"; sourceTree = "<group>"; };
 		FA08E2642C21E18B00CF63A0 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		FA08E2662C21E28100CF63A0 /* SectionHeaderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderModel.swift; sourceTree = "<group>"; };
-		FA08E2682C21E49A00CF63A0 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
+		FA08E2682C21E49A00CF63A0 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		FA08E26A2C21E4B000CF63A0 /* CurrentWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherTableViewCell.swift; sourceTree = "<group>"; };
 		FA08E26C2C21E4BB00CF63A0 /* PlaceCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCellModel.swift; sourceTree = "<group>"; };
 		FA08E26E2C21E4D100CF63A0 /* CurrentWeatherCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherCellModel.swift; sourceTree = "<group>"; };
@@ -134,6 +139,11 @@
 		FA2A36302C24E2A100267BE4 /* APINetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINetworkManager.swift; sourceTree = "<group>"; };
 		FA2A36322C24E2D700267BE4 /* GeocodeAPIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeAPIEndpoint.swift; sourceTree = "<group>"; };
 		FA2A36342C24E30800267BE4 /* APIEndpointProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpointProtocol.swift; sourceTree = "<group>"; };
+		FA2A36362C24EEB000267BE4 /* YandexWeatherAPIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexWeatherAPIEndpoint.swift; sourceTree = "<group>"; };
+		FA2A363B2C25926500267BE4 /* OpenMeteoNetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMeteoNetworkServiceProtocol.swift; sourceTree = "<group>"; };
+		FA2A363D2C25927300267BE4 /* OpenMeteoNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMeteoNetworkService.swift; sourceTree = "<group>"; };
+		FA2A363F2C25927F00267BE4 /* OpenMeteoAPIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMeteoAPIEndpoint.swift; sourceTree = "<group>"; };
+		FA2A36412C25928E00267BE4 /* OpenMeteoWeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMeteoWeatherResponse.swift; sourceTree = "<group>"; };
 		FA2C78652BA7863C00FB9D64 /* FontLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLibrary.swift; sourceTree = "<group>"; };
 		FA5C59042B56AC04005073D3 /* CityWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherViewController.swift; sourceTree = "<group>"; };
 		FA5C59062B56AC2F005073D3 /* CityWeatherPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherPresenter.swift; sourceTree = "<group>"; };
@@ -148,13 +158,13 @@
 		FA7D32222B8DEB4C0060A42B /* LocationServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceDelegate.swift; sourceTree = "<group>"; };
 		FA7D32242B8DEB6C0060A42B /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		FA892C312B6BA42C000D9298 /* SuggestNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestNetworkService.swift; sourceTree = "<group>"; };
-		FA892C332B6BA449000D9298 /* WeatherNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkService.swift; sourceTree = "<group>"; };
+		FA892C332B6BA449000D9298 /* YandexWeatherNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexWeatherNetworkService.swift; sourceTree = "<group>"; };
 		FA892C352B6BA4E7000D9298 /* GeocoderNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocoderNetworkService.swift; sourceTree = "<group>"; };
 		FA892C3A2B6CCF7F000D9298 /* SuggestNetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestNetworkServiceProtocol.swift; sourceTree = "<group>"; };
-		FA892C3D2B6CD10E000D9298 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		FA892C3D2B6CD10E000D9298 /* YandexAPIWeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexAPIWeatherResponse.swift; sourceTree = "<group>"; };
 		FA892C432B6D79C0000D9298 /* Suggest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suggest.swift; sourceTree = "<group>"; };
-		FA892C472B6F83C8000D9298 /* SuggestAPIErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestAPIErrors.swift; sourceTree = "<group>"; };
-		FA892C4E2B6FBFD4000D9298 /* WeatherNetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkServiceProtocol.swift; sourceTree = "<group>"; };
+		FA892C472B6F83C8000D9298 /* APIErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrors.swift; sourceTree = "<group>"; };
+		FA892C4E2B6FBFD4000D9298 /* YandexWeatherNetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexWeatherNetworkServiceProtocol.swift; sourceTree = "<group>"; };
 		FA892C522B6FCF8A000D9298 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		FAAEF8392B51FEED00AF1A7D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FADBCA9B2AA39E4B00A28511 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -345,7 +355,7 @@
 		FA08E2612C21D64700CF63A0 /* CityCell */ = {
 			isa = PBXGroup;
 			children = (
-				FA08E2682C21E49A00CF63A0 /* CityTableViewCell.swift */,
+				FA08E2682C21E49A00CF63A0 /* PlaceTableViewCell.swift */,
 				FA08E26C2C21E4BB00CF63A0 /* PlaceCellModel.swift */,
 			);
 			path = CityCell;
@@ -387,6 +397,36 @@
 				FA2A36342C24E30800267BE4 /* APIEndpointProtocol.swift */,
 			);
 			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		FA2A36382C2591DF00267BE4 /* YandexWeather */ = {
+			isa = PBXGroup;
+			children = (
+				FA892C4A2B6FBF9E000D9298 /* Model */,
+				FA892C332B6BA449000D9298 /* YandexWeatherNetworkService.swift */,
+				FA892C4E2B6FBFD4000D9298 /* YandexWeatherNetworkServiceProtocol.swift */,
+				FA2A36362C24EEB000267BE4 /* YandexWeatherAPIEndpoint.swift */,
+			);
+			path = YandexWeather;
+			sourceTree = "<group>";
+		};
+		FA2A36392C25921500267BE4 /* OpenMeteo */ = {
+			isa = PBXGroup;
+			children = (
+				FA2A363A2C25922C00267BE4 /* Model */,
+				FA2A363B2C25926500267BE4 /* OpenMeteoNetworkServiceProtocol.swift */,
+				FA2A363D2C25927300267BE4 /* OpenMeteoNetworkService.swift */,
+				FA2A363F2C25927F00267BE4 /* OpenMeteoAPIEndpoint.swift */,
+			);
+			path = OpenMeteo;
+			sourceTree = "<group>";
+		};
+		FA2A363A2C25922C00267BE4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FA2A36412C25928E00267BE4 /* OpenMeteoWeatherResponse.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		FA2C78642BA7860300FB9D64 /* Resources */ = {
@@ -480,7 +520,7 @@
 				FA892C492B6FBF90000D9298 /* Model */,
 				FA892C312B6BA42C000D9298 /* SuggestNetworkService.swift */,
 				FA892C3A2B6CCF7F000D9298 /* SuggestNetworkServiceProtocol.swift */,
-				FA892C472B6F83C8000D9298 /* SuggestAPIErrors.swift */,
+				FA892C472B6F83C8000D9298 /* APIErrors.swift */,
 			);
 			path = Suggest;
 			sourceTree = "<group>";
@@ -488,9 +528,8 @@
 		FA892C382B6CCF5C000D9298 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				FA892C4A2B6FBF9E000D9298 /* Model */,
-				FA892C332B6BA449000D9298 /* WeatherNetworkService.swift */,
-				FA892C4E2B6FBFD4000D9298 /* WeatherNetworkServiceProtocol.swift */,
+				FA2A36392C25921500267BE4 /* OpenMeteo */,
+				FA2A36382C2591DF00267BE4 /* YandexWeather */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -517,7 +556,7 @@
 		FA892C4A2B6FBF9E000D9298 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FA892C3D2B6CD10E000D9298 /* Weather.swift */,
+				FA892C3D2B6CD10E000D9298 /* YandexAPIWeatherResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -678,16 +717,18 @@
 				FA08E25F2C219B5900CF63A0 /* UISearchBar + Extension.swift in Sources */,
 				FA2A361B2C23A22E00267BE4 /* ApiKeys.swift in Sources */,
 				FA08E22F2C20675300CF63A0 /* UINavigationController + Extension.swift in Sources */,
+				FA2A36372C24EEB000267BE4 /* YandexWeatherAPIEndpoint.swift in Sources */,
 				FA08E24B2C208E3500CF63A0 /* CitySearchPresenterProtocol.swift in Sources */,
 				FA2A36202C24471D00267BE4 /* WeatherAppDataModel.xcdatamodeld in Sources */,
 				FA5C590B2B56AC5E005073D3 /* CityWeatherModuleConfigurator.swift in Sources */,
 				FA08E26B2C21E4B000CF63A0 /* CurrentWeatherTableViewCell.swift in Sources */,
-				FA892C342B6BA449000D9298 /* WeatherNetworkService.swift in Sources */,
+				FA892C342B6BA449000D9298 /* YandexWeatherNetworkService.swift in Sources */,
 				FA08E2672C21E28100CF63A0 /* SectionHeaderModel.swift in Sources */,
 				FA892C532B6FCF8A000D9298 /* LocationService.swift in Sources */,
 				FA5C59132B56AD86005073D3 /* CityWeatherPresenterModel.swift in Sources */,
 				FA08E25D2C209E5200CF63A0 /* CitySearchViewStaticStrings.swift in Sources */,
-				FA08E2692C21E49A00CF63A0 /* CityTableViewCell.swift in Sources */,
+				FA2A36402C25927F00267BE4 /* OpenMeteoAPIEndpoint.swift in Sources */,
+				FA08E2692C21E49A00CF63A0 /* PlaceTableViewCell.swift in Sources */,
 				FA08E25B2C20973D00CF63A0 /* TableHeaderFooterProtocol.swift in Sources */,
 				FA2A362A2C2449FF00267BE4 /* CoreDataStackProtocol.swift in Sources */,
 				FA892C442B6D79C0000D9298 /* Suggest.swift in Sources */,
@@ -701,7 +742,7 @@
 				FA08E2372C20678F00CF63A0 /* StandartButton.swift in Sources */,
 				FA08E2432C20761100CF63A0 /* SearchController.swift in Sources */,
 				FA7D32252B8DEB6C0060A42B /* LocationModel.swift in Sources */,
-				FA892C4F2B6FBFD4000D9298 /* WeatherNetworkServiceProtocol.swift in Sources */,
+				FA892C4F2B6FBFD4000D9298 /* YandexWeatherNetworkServiceProtocol.swift in Sources */,
 				FA5C59152B56AE00005073D3 /* CityWeatherRouterInput.swift in Sources */,
 				FA08E26D2C21E4BB00CF63A0 /* PlaceCellModel.swift in Sources */,
 				FA08E2652C21E18B00CF63A0 /* SectionHeaderView.swift in Sources */,
@@ -710,10 +751,11 @@
 				FA2A36262C24480500267BE4 /* CoreDataStack.swift in Sources */,
 				FA08E22B2C20675300CF63A0 /* TableViewSectionProtocol.swift in Sources */,
 				FA892C362B6BA4E7000D9298 /* GeocoderNetworkService.swift in Sources */,
-				FA892C482B6F83C8000D9298 /* SuggestAPIErrors.swift in Sources */,
+				FA892C482B6F83C8000D9298 /* APIErrors.swift in Sources */,
 				FA08E2492C208DEB00CF63A0 /* CitySearchModuleConfigurator.swift in Sources */,
 				FA08E22D2C20675300CF63A0 /* CellConfigurableProtocol.swift in Sources */,
 				FA08E2402C2074A100CF63A0 /* CitySearchTableViewController.swift in Sources */,
+				FA2A363E2C25927300267BE4 /* OpenMeteoNetworkService.swift in Sources */,
 				FA5C590D2B56AD30005073D3 /* CityWeatherModuleOutput.swift in Sources */,
 				FA08E2292C20675300CF63A0 /* CollectionViewCellProtocol.swift in Sources */,
 				FA7D32232B8DEB4C0060A42B /* LocationServiceDelegate.swift in Sources */,
@@ -729,12 +771,14 @@
 				FA2A36192C2385ED00267BE4 /* HidebleSectionHeaderModel.swift in Sources */,
 				FA5C59092B56AC46005073D3 /* CityWeatherRouter.swift in Sources */,
 				FA08E2312C20675300CF63A0 /* UIView + Extension.swift in Sources */,
+				FA2A36422C25928E00267BE4 /* OpenMeteoWeatherResponse.swift in Sources */,
 				FA08E1682C205B3400CF63A0 /* AppColor.swift in Sources */,
 				FA5C59052B56AC04005073D3 /* CityWeatherViewController.swift in Sources */,
 				FADBCA9F2AA39E4B00A28511 /* AppDelegate.swift in Sources */,
 				FA2A36332C24E2D700267BE4 /* GeocodeAPIEndpoint.swift in Sources */,
 				FA5C59192B56AE89005073D3 /* CityWeatherViewOutput.swift in Sources */,
 				FA892C3B2B6CCF7F000D9298 /* SuggestNetworkServiceProtocol.swift in Sources */,
+				FA2A363C2C25926500267BE4 /* OpenMeteoNetworkServiceProtocol.swift in Sources */,
 				FA08E24D2C208E4200CF63A0 /* CitySearchViewProtocol.swift in Sources */,
 				FA5C590F2B56AD47005073D3 /* CityWeatherModuleInput.swift in Sources */,
 				FA08E2332C20675300CF63A0 /* ModuleTransitionableProtocol.swift in Sources */,
@@ -744,7 +788,7 @@
 				FA2A36352C24E30800267BE4 /* APIEndpointProtocol.swift in Sources */,
 				FA2A36312C24E2A100267BE4 /* APINetworkManager.swift in Sources */,
 				FA08E2522C208F3800CF63A0 /* CitySearchRouter.swift in Sources */,
-				FA892C3E2B6CD10E000D9298 /* Weather.swift in Sources */,
+				FA892C3E2B6CD10E000D9298 /* YandexAPIWeatherResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

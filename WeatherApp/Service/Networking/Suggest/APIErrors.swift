@@ -1,6 +1,6 @@
 import Foundation
 
-enum SuggestAPIErrors: Error {
+enum APIErrors: Error {
     case invalidUrl
     case invalidData
     case jsonParsingFailure

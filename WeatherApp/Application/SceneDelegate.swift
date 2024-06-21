@@ -17,15 +17,15 @@ private extension SceneDelegate {
     func initializeRootView(with scene: UIWindowScene){
         window = UIWindow(windowScene: scene )
         let navigationController = UINavigationController()
-        let suggestNetworkService = SuggestNetworkService()
         let locationService = LocationService()
         let geoCoderService = GeocoderNetworkService()
+        let weatherService = OpenMeteoNetworkService()
         let geoObjectPersistanceService = GeoObjectPersistentService(coreDataStack: CoreDataStack.shared)
         let dependencies = CitySearchModuleConfigurator.Dependecies(navigationController: navigationController,
-                                                                    suggestService: suggestNetworkService,
                                                                     locationService: locationService,
                                                                     geocodeService: geoCoderService,
-                                                                    geoObjectPersistanceService: geoObjectPersistanceService)
+                                                                    geoObjectPersistanceService: geoObjectPersistanceService,
+                                                                    weatherService: weatherService)
         let viewController = CitySearchModuleConfigurator.configure(with: dependencies)
         
         navigationController.viewControllers = [viewController]

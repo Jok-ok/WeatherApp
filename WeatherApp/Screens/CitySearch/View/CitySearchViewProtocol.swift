@@ -12,4 +12,5 @@ protocol CitySearchViewProtocol: AnyObject {
     func configureFavoriteSectionHeader(with model: HidebleSectionHeaderModel)
     func insertFavoriteCityInSection(with item: PlaceCellModel)
     func removeFavoriteCityInSection(from row: Int)
+    func endRefreshViewController()
 }

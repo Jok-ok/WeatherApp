@@ -4,7 +4,7 @@ class SuggestNetworkService: SuggestNetworkServiceProtocol {
     private let apiKey = ApiKeys.suggestApiKey
     private let urlString = "https://suggest-maps.yandex.ru/v1/suggest"
     
-    func getSuggests(for prompt: String, completion: @escaping (Result<[Suggest], SuggestAPIErrors>) -> ()) {
+    func getSuggests(for prompt: String, completion: @escaping (Result<[Suggest], APIErrors>) -> ()) {
         let queryItems = [
             URLQueryItem(name: "apikey", value: apiKey),
             URLQueryItem(name: "text", value: prompt),

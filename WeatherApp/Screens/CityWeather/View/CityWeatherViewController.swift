@@ -1,7 +1,10 @@
 import UIKit
 
-class CityWeatherViewController: UIViewController, CityWeatherViewInput {
+class CityWeatherViewController: UITableViewController, CityWeatherViewInput {
     var output: CityWeatherViewOutput?
+    
+    
+    
 
     func setupInitialState(with model: CityWeatherPresenterModel) {
         configureApperance(with: model)

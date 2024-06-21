@@ -5,7 +5,7 @@ class TableViewSection<Cell: UITableViewCell & CellConfigurableProtocol & CellId
     typealias Cell = Cell
     typealias CellModelHandler = (CellModel) -> Void
     
-    private let tapHandler: CellModelHandler?
+    private var tapHandler: CellModelHandler?
     private let removeItemHandler: CellModelHandler?
     
     private var header: TableViewSectionHeaderFooterProtocol?
@@ -58,6 +58,10 @@ class TableViewSection<Cell: UITableViewCell & CellConfigurableProtocol & CellId
     
     func dequeueReusableFooter(_ tableView: UITableView) -> UIView? {
         footer?.dequeReusableHeaderFooter(tableView)
+    }
+    
+    func setTapHandler(_ handler: CellModelHandler?) {
+        tapHandler = handler
     }
     
     var heightForFooter: CGFloat {

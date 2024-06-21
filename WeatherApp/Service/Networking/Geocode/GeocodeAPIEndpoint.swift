@@ -1,6 +1,10 @@
 import Foundation
 
 enum GeocoderAPIEndpoint: APIEndpointProtocol {
+    var method: HTTPMethod { .get }
+    
+    var headers: [String : String] { [:] }
+    
     private var apiKey: String { ApiKeys.geocoderApiKey }
     var urlString: String { "https://geocode-maps.yandex.ru/1.x" }
     

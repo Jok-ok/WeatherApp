@@ -1,7 +1,7 @@
 import Foundation
 
-class APINetworkManager {
-    static func request<DataType: Codable, EndpointType: APIEndpointProtocol>(to endpoint: EndpointType, with completion: ((Result<DataType, SuggestAPIErrors>) -> Void)? ) {
+final class APINetworkManager {
+    static func request<DataType: Codable, EndpointType: APIEndpointProtocol>(to endpoint: EndpointType, with completion: ((Result<DataType, APIErrors>) -> Void)? ) {
         let queryItems = endpoint.queryItems.compactMap { key, value in
             URLQueryItem(name: key, value: value)
         }
@@ -11,8 +11,17 @@ class APINetworkManager {
         
         url.append(queryItems: queryItems)
         
+        var request = URLRequest(url: url)
+    
+        request.httpMethod = endpoint.method.rawValue
+        
+        for header in endpoint.headers {
+            request.addValue(header.value, forHTTPHeaderField: header.key)
+        }
+        
         let session = URLSession.shared
-        session.dataTask(with: url) { data, response, error in
+        
+        session.dataTask(with: request) { data, response, error in
             if let error = error {
                 DispatchQueue.main.async {
                     completion?(.failure(.unknownError(error: error)))

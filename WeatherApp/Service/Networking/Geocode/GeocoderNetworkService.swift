@@ -1,9 +1,9 @@
 import Foundation
 
 final class GeocoderNetworkService: GeocoderNetworkServiceProtocol {
-    func getGeoObject(for place: String, ofKindWith kinds: [GeocodeComponentKind], completion: @escaping (Result<[GeoObject], SuggestAPIErrors>) -> ()) {
+    func getGeoObject(for place: String, ofKindWith kinds: [GeocodeComponentKind], completion: @escaping (Result<[GeoObject], APIErrors>) -> ()) {
         APINetworkManager.request(to: GeocoderAPIEndpoint.getGeoObjectByPrompt(place))
-        { (result: Result<Geocode, SuggestAPIErrors>) -> Void in
+        { (result: Result<Geocode, APIErrors>) -> Void in
             switch result {
             case .success(let geocodeResponse):
                 if let geoObjects = geocodeResponse.response?.geoObjectCollection?.featureMember?.compactMap({ featureMember in
@@ -24,8 +24,8 @@ final class GeocoderNetworkService: GeocoderNetworkServiceProtocol {
         }
     }
     
-    func getGeoObject(latitude: Decimal, longitude: Decimal, completion: @escaping (Result<GeoObject, SuggestAPIErrors>) -> ()) {
-        APINetworkManager.request(to: GeocoderAPIEndpoint.getGeoObjectByCoordinates(longitude: longitude, latitude: latitude)) { (result: Result<Geocode, SuggestAPIErrors>) -> Void in
+    func getGeoObject(latitude: Decimal, longitude: Decimal, completion: @escaping (Result<GeoObject, APIErrors>) -> ()) {
+        APINetworkManager.request(to: GeocoderAPIEndpoint.getGeoObjectByCoordinates(longitude: longitude, latitude: latitude)) { (result: Result<Geocode, APIErrors>) -> Void in
             switch result {
             case .success(let geocodeResponse):
                 if let geoObject = geocodeResponse.response?.geoObjectCollection?.featureMember?.first?.geoObject {

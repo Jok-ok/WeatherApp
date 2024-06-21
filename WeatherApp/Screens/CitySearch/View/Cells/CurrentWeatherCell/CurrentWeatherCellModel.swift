@@ -1,6 +1,7 @@
 import Foundation
 
 struct CurrentWeatherCellModel {
-    let city: String
-    let temperatureText: String
+    var city: String
+    var temperatureText: String
+    var condition: String
 }

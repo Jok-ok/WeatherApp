@@ -1,6 +1,6 @@
 import UIKit
 
-final class CityTableViewCell: UITableViewCell, CellIdentifiableProtocol, CellConfigurableProtocol {
+final class PlaceTableViewCell: UITableViewCell, CellIdentifiableProtocol, CellConfigurableProtocol {
     typealias Model = PlaceCellModel
     private let cityNameLabel = UILabel()
     private let subtitleLable = UILabel()
@@ -26,7 +26,7 @@ final class CityTableViewCell: UITableViewCell, CellIdentifiableProtocol, CellCo
     }
     
     private func favoriteButtonDidTaped() {
-        guard let title = cityNameLabel.text, let subtitle = subtitleLable.text, let model else { return }
+        guard let model else { return }
         model.onFavoriteButtonTappedAction?(model)
     }
     
@@ -45,7 +45,7 @@ final class CityTableViewCell: UITableViewCell, CellIdentifiableProtocol, CellCo
 }
 
 //MARK: - Appearance
-private extension CityTableViewCell {
+private extension PlaceTableViewCell {
     func configureAppearance() {
         selectionStyle = .none
         backgroundColor = .getAppColor(.secondaryBackgroundColor)

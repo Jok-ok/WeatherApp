@@ -8,7 +8,7 @@ final class CitySearchPresenter {
     private let geocoderService: GeocoderNetworkServiceProtocol
     private var locationService: LocationServiceProtocol
     private let geoObjectPersistenceService: GeoObjectServiceProtocol
-    private let weatherNetworkService: OpenMeteoNetworkServiceProtocol
+    private let weatherNetworkService: WeatherNetworkServiceProtocol
     
     private var timer: Timer?
     
@@ -18,7 +18,7 @@ final class CitySearchPresenter {
     private var favoriteCitiesCellModels = [PlaceCellModel]()
     private var isFavoriteSectionHided: Bool = false
     
-    init(router: CitySearchRouter, weatherService: OpenMeteoNetworkServiceProtocol, locationService: LocationServiceProtocol, geocoderNetworkService: GeocoderNetworkServiceProtocol, geoObjectPersistenceService: GeoObjectServiceProtocol) {
+    init(router: CitySearchRouter, weatherService: WeatherNetworkServiceProtocol, locationService: LocationServiceProtocol, geocoderNetworkService: GeocoderNetworkServiceProtocol, geoObjectPersistenceService: GeoObjectServiceProtocol) {
         self.router = router
         self.locationService = locationService
         self.geocoderService = geocoderNetworkService
@@ -66,10 +66,10 @@ extension CitySearchPresenter: CitySearchPresenterProtocol {
             
             if text == "" { return }
             
-            self?.geocoderService.getGeoObject(for: text, ofKindWith: [.locality, .province]) { result in
+            self?.geocoderService.getPlaces(for: text, ofKindWith: [.locality, .province]) { result in
                 switch result {
-                case .success(let geoObjects):
-                    self?.placeSuggestsInView(geoObjects: geoObjects)
+                case .success(let placeModels):
+                    self?.placeSuggestsInView(placeModels: placeModels)
                 case .failure(let error):
                     self?.showError(with: error.localizedDescription)
                 }
@@ -116,23 +116,14 @@ private extension CitySearchPresenter {
     private func deleteFromPersistentStorage(title: String, subtitle: String) {
         geoObjectPersistenceService.deleteGeoObject(with: title, subtitle: subtitle)
     }
-
-    private func placeSuggestsInView(geoObjects: [GeoObject]) {
+    
+    private func placeSuggestsInView(placeModels: [PlaceModelAfterDTO]) {
         let staticStrings = CitySearchViewStaticStrings()
         self.view?.configureCityTableViewSectionHeader(with: staticStrings.searchCitySectionHeader)
-        self.searchedCitiesCellModels = geoObjects.compactMap({ geoObject in
-            let postion = geoObject.point
-            let longlat = postion.pos.components(separatedBy: " ")
-            if let longitude = Decimal(string: longlat[0]), let latitude = Decimal(string: longlat[1]) {
-                return PlaceCellModel(cityName: geoObject.name,
-                              subtitle: geoObject.description ?? "",
-                              isFavorite: self.favoriteCitiesCellModels.contains(where: { model in
-                    (geoObject.name == model.cityName) && (geoObject.description ?? "" == model.subtitle)
-                }),
-                              onFavoriteButtonTappedAction: { [weak self] model in
-                    self?.onFavoriteButtonDidTapped(model: model)
-                }, latitude: latitude, longitude: longitude)
-            } else { return nil }
+        self.searchedCitiesCellModels = placeModels.compactMap({ placeModel in
+            PlaceCellModel(cityName: placeModel.name, subtitle: placeModel.descritpion ?? "", onFavoriteButtonTappedAction: { [weak self] model in
+                self?.onFavoriteButtonDidTapped(model: model)
+            }, latitude: placeModel.latitude, longitude: placeModel.longitude)
         })
         self.view?.configureSearchedCitiesTableViewSection(with: self.searchedCitiesCellModels)
     }
@@ -194,14 +185,9 @@ private extension CitySearchPresenter {
             weatherNetworkService.getWeatherIn(longitude: longitude, latitude: latitude) { [weak self] result in
                 switch result {
                 case .success(let weather):
-                    guard let temp = weather.current?.temperature2M, let weatherCode = weather.current?.weatherCode else {
-                        guard let self else { return }
-                        showError(with: staticStrings.noTemperatureData)
-                        return
-                    }
-                    let temperatureText = "\(temp) °C"
+                    let temperatureText = "\(weather.temperature) °C"
                     self?.currentWeather?.temperatureText = temperatureText
-                    self?.currentWeather?.condition = weatherCode.description
+                    self?.currentWeather?.condition = weather.weatherCondition
                     self?.setCurrentWeatherCell()
                 case .failure(let error):
                     self?.showError(with: error.localizedDescription)
@@ -223,8 +209,9 @@ extension CitySearchPresenter: LocationServiceDelegate {
     func didUpdateLocation() {
         let location = locationService.getLocation()
         if let location {
-            geocoderService.getGeoObject(latitude: Decimal(location.latitude),
-                                         longitude: Decimal(location.longitude)) { [weak self] result in
+            geocoderService.getPlace(latitude: Decimal(location.latitude),
+                                     longitude: Decimal(location.longitude))
+            { [weak self] result in
                 switch result {
                 case .success(let geoObject):
                     let name = geoObject.name

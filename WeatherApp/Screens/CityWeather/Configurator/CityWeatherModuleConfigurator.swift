@@ -1,6 +1,6 @@
 final class CityWeatherModuleConfigurator {
     struct Dependecies {
-        let weatherService: OpenMeteoNetworkServiceProtocol
+        let weatherService: WeatherNetworkServiceProtocol
     }
     
     func configure(output: CityWeatherModuleOutput? = nil) -> CityWeatherViewController {

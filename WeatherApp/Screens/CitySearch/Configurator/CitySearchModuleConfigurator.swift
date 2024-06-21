@@ -6,7 +6,7 @@ final class CitySearchModuleConfigurator {
         let locationService: LocationServiceProtocol
         let geocodeService: GeocoderNetworkServiceProtocol
         let geoObjectPersistanceService: GeoObjectServiceProtocol
-        let weatherService: OpenMeteoNetworkServiceProtocol
+        let weatherService: WeatherNetworkServiceProtocol
     }
     
     static func configure(with dependencies: Dependecies) -> UIViewController {

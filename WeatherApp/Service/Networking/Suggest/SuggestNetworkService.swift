@@ -1,10 +1,10 @@
 import Foundation
 
 class SuggestNetworkService: SuggestNetworkServiceProtocol {
-    private let apiKey = ""
+    private let apiKey = ApiKeys.suggestApiKey
     private let urlString = "https://suggest-maps.yandex.ru/v1/suggest"
     
-    func getSuggests(for prompt: String, completion: @escaping (Result<[Suggest], SuggestAPIErrors>) -> ()) {
+    func getSuggests(for prompt: String, completion: @escaping (Result<[Suggest], APIErrors>) -> ()) {
         let queryItems = [
             URLQueryItem(name: "apikey", value: apiKey),
             URLQueryItem(name: "text", value: prompt),
@@ -21,31 +21,44 @@ class SuggestNetworkService: SuggestNetworkServiceProtocol {
         let session = URLSession.shared
         session.dataTask(with: url) { data, response, error in
             if let error = error {
-                completion(.failure(.unknownError(error: error)))
+                DispatchQueue.main.async {
+                    completion(.failure(.unknownError(error: error)))
+                }
                 return
             }
             
             guard let response = response as? HTTPURLResponse else {
-                completion(.failure(.requestFailed(description: "Request failed")))
+                DispatchQueue.main.async {
+                    completion(.failure(.requestFailed(description: "Request failed")))
+
+                }
                 return
             }
             
             guard response.statusCode == 200 else {
-                completion(.failure(.invalidStatusCode(statusCode: response.statusCode)))
+                DispatchQueue.main.async {
+                    completion(.failure(.invalidStatusCode(statusCode: response.statusCode)))
+                }
                 return
             }
             
             guard let data = data else {
-                completion(.failure(.invalidData))
+                DispatchQueue.main.async {
+                    completion(.failure(.invalidData))
+                }
                 return
             }
             
             do {
                 let suggests = try JSONDecoder().decode(SuggestResults.self, from: data)
                 print(suggests)
-                completion(.success(suggests.results ?? []))
+                DispatchQueue.main.async {
+                    completion(.success(suggests.results ?? []))
+                }
             } catch {
-                completion(.failure(.jsonParsingFailure))
+                DispatchQueue.main.async {
+                    completion(.failure(.jsonParsingFailure))
+                }
             }
         }.resume()
     }

@@ -1,7 +1,6 @@
-import Foundation
 import CoreLocation
 
-class LocationService: NSObject, CLLocationManagerDelegate {
+final class LocationService: NSObject, CLLocationManagerDelegate {
     weak var delegate: LocationServiceDelegate?
     fileprivate let locationManager = CLLocationManager()
     var location: Location?
@@ -9,19 +8,12 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     override init() {
         super.init()
         
+        self.locationManager.requestAlwaysAuthorization()
+
+        self.locationManager.requestWhenInUseAuthorization()
+
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-    }
-    
-    func startUpdatingLocation() {
-        locationManager.startUpdatingLocation()
-    }
-    func stopUpdationgLocation() {
-        locationManager.stopUpdatingLocation()
-    }
-    
-    func getLocation() -> Location? {
-        return location
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -33,5 +25,19 @@ class LocationService: NSObject, CLLocationManagerDelegate {
                                      longitude: location.coordinate.longitude)
             delegate?.didUpdateLocation()
         }
+    }
+}
+
+extension LocationService: LocationServiceProtocol {
+    func startUpdatingLocation() {
+        locationManager.startUpdatingLocation()
+    }
+    func stopUpdationgLocation() {
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func getLocation() -> Location? {
+        print("location \(location?.latitude), \(location?.longitude)")
+        return location
     }
 }

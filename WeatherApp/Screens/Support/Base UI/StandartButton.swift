@@ -27,27 +27,27 @@ private extension StandartButton {
             var conf = UIButton.Configuration.filled()
 
             conf.cornerStyle = .medium
-            conf.baseForegroundColor = .buttonFontColor
-            conf.baseBackgroundColor = .accentColor
+            conf.baseForegroundColor = .getAppColor(.buttonFontColor)
+            conf.baseBackgroundColor = .getAppColor(.accentColor)
             
             conf.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
             
             conf.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
                 var outcoming = incoming
-                outcoming.font = UIFont.boldSystemFont(ofSize: 18)
+                outcoming.font = FontLibrary.headline
                 return outcoming
             }
             
-            configuration =   conf
+            configuration = conf
         }
         else {
-            backgroundColor = .accentColor
-            tintColor = .buttonFontColor
+            backgroundColor = .getAppColor(.accentColor)
+            tintColor = .getAppColor(.buttonFontColor)
             layer.cornerRadius = 8
             layer.masksToBounds = true
         
             contentEdgeInsets = .init(top: 10, left: 20, bottom: 10, right: 20)
-            titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+            titleLabel?.font = FontLibrary.headline
         }
 
     }

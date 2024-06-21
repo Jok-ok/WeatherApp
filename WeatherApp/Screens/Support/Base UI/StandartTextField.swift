@@ -1,4 +1,4 @@
-import UIKit.UITextField
+import UIKit
 
 final class StandartTextField: UITextField {
     private let placeholderView = UIView()
@@ -37,18 +37,18 @@ final class StandartTextField: UITextField {
 private extension StandartTextField {
     func configureAppearance() {
         let attributedString = NSAttributedString(string: "Email", attributes: [
-            .foregroundColor: UIColor.accentOp,
-            .font: UIFont.boldSystemFont(ofSize: 24)
+            .foregroundColor: UIColor.getAppColor(.accentOp),
+            .font: FontLibrary.body
         ])
         attributedPlaceholder = attributedString
         
         textAlignment = .center
         translatesAutoresizingMaskIntoConstraints = false
-        textColor = .accentColor
-        font = .boldSystemFont(ofSize: 18)
+        textColor = .getAppColor(.accentColor)
+        font = FontLibrary.body
 
         layer.borderWidth = 0
-        layer.borderColor = UIColor.accentColor.cgColor
+        layer.borderColor = UIColor.getAppColor(.accentColor)?.cgColor
         layer.cornerRadius = 10
         clipsToBounds = true
     }

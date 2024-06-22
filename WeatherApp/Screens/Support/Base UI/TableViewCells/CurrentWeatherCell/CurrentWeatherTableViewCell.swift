@@ -19,9 +19,16 @@ final class CurrentWeatherTableViewCell: UITableViewCell, CellIdentifiableProtoc
     
     
     func configure(with model: CurrentWeatherCellModel) {
+        if model.city.split(separator: " ").count > 1 {
+            cityLabel.numberOfLines = 3
+        } else {
+            cityLabel.numberOfLines = 1
+        }
+        
         cityLabel.text = model.city
         temperatureLabel.text = model.temperatureText
         conditionLabel.text = model.condition
+        cityLabel.sizeToFit()
     }
 }
 
@@ -48,7 +55,8 @@ private extension CurrentWeatherTableViewCell {
         cityLabel.font = FontLibrary.title
         cityLabel.textColor = .getAppColor(.accentColor)
         cityLabel.textAlignment = .center
-        cityLabel.numberOfLines = 1
+        cityLabel.numberOfLines = 0
+        cityLabel.minimumScaleFactor = 0.5
         cityLabel.adjustsFontSizeToFitWidth = true
     }
     

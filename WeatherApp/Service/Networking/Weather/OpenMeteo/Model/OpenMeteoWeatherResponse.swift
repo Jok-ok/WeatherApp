@@ -6,9 +6,9 @@ struct OpenMeteoWeatherResponse: Codable {
     let utcOffsetSeconds: Int?
     let timezone, timezoneAbbreviation: String?
     let elevation: Int?
-    let currentUnits: CurrentUnits?
+    let currentUnits: Units?
     let current: Current?
-    let hourlyUnits: HourlyUnits?
+    let hourlyUnits: Units?
     let hourly: Hourly?
     let dailyUnits: DailyUnits?
     let daily: Daily?
@@ -42,6 +42,66 @@ struct Current: Codable {
         case weatherCode = "weather_code"
     }
 }
+
+// MARK: - Units
+
+struct Units: Codable {
+    let time, interval, temperature2M, weatherCode: String?
+    let precipitationProbability: String?
+
+    enum CodingKeys: String, CodingKey {
+        case time, interval
+        case temperature2M = "temperature_2m"
+        case weatherCode = "weather_code"
+        case precipitationProbability = "precipitation_probability"
+    }
+}
+
+// MARK: - Daily
+struct Daily: Codable {
+    let time: [String]?
+    let weatherCode: [WeatherCodes]?
+    let temperature2MMax, temperature2MMin: [Double]?
+    let sunrise, sunset: [String]?
+
+    enum CodingKeys: String, CodingKey {
+        case time
+        case weatherCode = "weather_code"
+        case temperature2MMax = "temperature_2m_max"
+        case temperature2MMin = "temperature_2m_min"
+        case sunrise, sunset
+    }
+}
+
+// MARK: - DailyUnits
+struct DailyUnits: Codable {
+    let time, weatherCode, temperature2MMax, temperature2MMin: String?
+    let sunrise, sunset: String?
+
+    enum CodingKeys: String, CodingKey {
+        case time
+        case weatherCode = "weather_code"
+        case temperature2MMax = "temperature_2m_max"
+        case temperature2MMin = "temperature_2m_min"
+        case sunrise, sunset
+    }
+}
+
+// MARK: - Hourly
+struct Hourly: Codable {
+    let time: [String]?
+    let temperature2M: [Double]?
+    let precipitationProbability: [Int]?
+    let weatherCode: [WeatherCodes]?
+
+    enum CodingKeys: String, CodingKey {
+        case time
+        case temperature2M = "temperature_2m"
+        case precipitationProbability = "precipitation_probability"
+        case weatherCode = "weather_code"
+    }
+}
+
 
 enum WeatherCodes: Int, Codable {
     case clearSky = 0
@@ -129,58 +189,5 @@ enum WeatherCodes: Int, Codable {
         case .thunderstormWithHail:
             return "Гроза с градом"
         }
-    }
-}
-
-// MARK: - CurrentUnits
-struct CurrentUnits: Codable {
-    let time, interval, temperature2M, weatherCode: String?
-
-    enum CodingKeys: String, CodingKey {
-        case time, interval
-        case temperature2M = "temperature_2m"
-        case weatherCode = "weather_code"
-    }
-}
-
-// MARK: - Daily
-struct Daily: Codable {
-    let time: [String]?
-    let weatherCode: [Int]?
-
-    enum CodingKeys: String, CodingKey {
-        case time
-        case weatherCode = "weather_code"
-    }
-}
-
-// MARK: - DailyUnits
-struct DailyUnits: Codable {
-    let time, weatherCode: String?
-
-    enum CodingKeys: String, CodingKey {
-        case time
-        case weatherCode = "weather_code"
-    }
-}
-
-// MARK: - Hourly
-struct Hourly: Codable {
-    let time: [String]?
-    let temperature2M: [Double]?
-
-    enum CodingKeys: String, CodingKey {
-        case time
-        case temperature2M = "temperature_2m"
-    }
-}
-
-// MARK: - HourlyUnits
-struct HourlyUnits: Codable {
-    let time, temperature2M: String?
-
-    enum CodingKeys: String, CodingKey {
-        case time
-        case temperature2M = "temperature_2m"
     }
 }

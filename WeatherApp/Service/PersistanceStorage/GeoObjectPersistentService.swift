@@ -2,7 +2,7 @@ import CoreData
 
 final class GeoObjectPersistentService: GeoObjectServiceProtocol {
     private let coreDataStack: CoreDataStackProtocol
-
+    
     init(coreDataStack: CoreDataStackProtocol) {
         self.coreDataStack = coreDataStack
     }
@@ -28,23 +28,20 @@ final class GeoObjectPersistentService: GeoObjectServiceProtocol {
         }
     }
     
-    @discardableResult
-    func deleteGeoObject(with name: String, subtitle: String) -> GeoObjectPersistent? {
+    func deleteGeoObject(with name: String, subtitle: String) {
         let request = GeoObjectPersistent.fetchRequest()
         let titleCondition = NSPredicate(format: "title == %@", name)
         let subtitileCondidtion = NSPredicate(format: "subtitle == %@", subtitle)
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [titleCondition, subtitileCondidtion])
         
         do {
-            if let geoObjectToDelete = try coreDataStack.context.fetch(request).first {
+            let geoObjectsToDelete = try coreDataStack.context.fetch(request)
+            for geoObjectToDelete in geoObjectsToDelete {
                 coreDataStack.context.delete(geoObjectToDelete)
                 coreDataStack.saveContext()
-                return geoObjectToDelete
             }
-            return nil
         } catch {
             print("Fetch failed")
-            return nil
         }
     }
 }

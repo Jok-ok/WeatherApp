@@ -1,6 +1,6 @@
 import Foundation
 
-final class YandexWeatherNetworkService: WeatherNetworkServiceProtocol {
+final class YandexWeatherNetworkService {
     func getWeatherIn(longitude: Decimal, latitude: Decimal, completion: @escaping (Result<WeatherModelAfterDTO, APIErrors>) -> Void) {
         APINetworkManager.request(to: YandexWeatherAPIEndpoint.getWeatherIn(longitude: longitude, latitude: latitude)) {(result: Result<YandexAPIWeatherResponse, APIErrors>) -> Void in
             switch result {

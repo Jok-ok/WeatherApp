@@ -43,8 +43,9 @@ extension CitySearchPresenter: CitySearchPresenterProtocol {
             favoriteSectionHeaderText = staticStrings.favoriteSectionEmptyTitle
         }
         
-        let favoriteSectionModel = HidebleSectionHeaderModel(headerText: favoriteSectionHeaderText,
-                                                             onEyeTappedAction: {[weak self] in self?.hideFavoriteSectionButtonDidTapped() })
+        let favoriteSectionModel = HidebleSectionHeaderModel(
+            headerText: favoriteSectionHeaderText,
+            onEyeTappedAction: {[weak self] in self?.hideFavoriteSectionButtonDidTapped() })
         
         let currentWeatherSectionHeader = SectionHeaderModel(headerText: staticStrings.currentWeatherSectionHeader)
         let searchCitySectionHeader = SectionHeaderModel(headerText: staticStrings.greetingSearchCitySectionHeader)
@@ -82,12 +83,12 @@ extension CitySearchPresenter: CitySearchPresenterProtocol {
     }
     
     func onCityDidTapped(model: PlaceCellModel) {
-        router.showWeatherFor(city: model.cityName, latitude: model.latitude, longitude: model.longitude)
+        router.showWeatherFor(city: model.cityName, latitude: model.latitude, longitude: model.longitude, weatherNetworkService: self.weatherNetworkService)
     }
     
     func onCurrentCityDidTapped() {
         if let location = locationService.getLocation(), let city = currentWeather?.city, city != staticStrings.undefinedLocation {
-            router.showWeatherFor(city: city, latitude: Decimal(location.latitude), longitude: Decimal(location.longitude))
+            router.showWeatherFor(city: city, latitude: Decimal(location.latitude), longitude: Decimal(location.longitude), weatherNetworkService: self.weatherNetworkService)
         } else {
             showError(with: staticStrings.noCurrentLocationData)
         }
@@ -134,15 +135,12 @@ private extension CitySearchPresenter {
             favoriteCitiesCellModels.insert(model, at: 0)
             view?.insertFavoriteCityInSection(with: model)
         } else {
-            let favoriteCityIndex = favoriteCitiesCellModels.firstIndex(where: { ($0.cityName == model.cityName) && ($0.subtitle == model.subtitle) })
-            
-            if let favoriteCityIndex {
+            while let favoriteCityIndex = favoriteCitiesCellModels.firstIndex(where: { ($0.cityName == model.cityName) && ($0.subtitle == model.subtitle) }) {
+                favoriteCitiesCellModels.remove(at: favoriteCityIndex)
                 view?.removeFavoriteCityInSection(from: favoriteCityIndex)
             }
             
-            favoriteCitiesCellModels.removeAll(where: { ($0.cityName == model.cityName) && ($0.subtitle == model.subtitle) })
             deleteFromPersistentStorage(title: model.cityName, subtitle: model.subtitle)
-            
             
             let searchCityIndex = searchedCitiesCellModels.firstIndex(where: { ($0.cityName == model.cityName) && ($0.subtitle == model.subtitle) })
             

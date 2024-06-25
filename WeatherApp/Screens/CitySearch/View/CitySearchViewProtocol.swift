@@ -13,4 +13,5 @@ protocol CitySearchViewProtocol: AnyObject {
     func insertFavoriteCityInSection(with item: PlaceCellModel)
     func removeFavoriteCityInSection(from row: Int)
     func endRefreshViewController()
+    func endEditingSearchBar()
 }

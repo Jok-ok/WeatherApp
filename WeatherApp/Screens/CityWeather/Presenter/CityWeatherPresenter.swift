@@ -10,18 +10,20 @@ final class CityWeatherPresenter: CityWeatherPresenterProtocol {
     private let longitude: Decimal
     private let latitude: Decimal
     private let cityName: String
+    
     private let timeFormatter: DateFormatter = {
         let timeFormatter = DateFormatter()
         timeFormatter.timeStyle = .short
-        timeFormatter.dateStyle = .none
+        timeFormatter.dateFormat = "dd.MM.YY\nHH:mm"
         return timeFormatter
     }()
+    
     private let dateFormetter: DateFormatter = {
         let datetimeFormatter = DateFormatter()
         datetimeFormatter.dateFormat = "dd.MM"
         return datetimeFormatter
     }()
-
+    
     init(router: CityWeatherRouterProtocol, weatherNetworkService: WeatherNetworkServiceProtocol, longitude: Decimal, latitude: Decimal, cityName: String) {
         self.router = router
         self.weatherNetworkService = weatherNetworkService
@@ -43,7 +45,10 @@ final class CityWeatherPresenter: CityWeatherPresenterProtocol {
         showCurrentWeather()
     }
     
-    private func requestWeather() {
+}
+private extension CityWeatherPresenter {
+    
+    func requestWeather() {
         weatherNetworkService?.getWeatherForecast(longitude: self.longitude, latitude: self.latitude) {[weak self] result in
             guard let self else { return }
             switch result {
@@ -62,7 +67,7 @@ final class CityWeatherPresenter: CityWeatherPresenterProtocol {
         }
     }
     
-    private func showCurrentWeather() {
+    func showCurrentWeather() {
         if let currentWeatherCellModel {
             view?.configureCurrentWeatherSection(with: currentWeatherCellModel)
         } else {
@@ -73,11 +78,10 @@ final class CityWeatherPresenter: CityWeatherPresenterProtocol {
         }
     }
     
-    private func showDailyWeather() {
+    func showDailyWeather() {
         guard let weatherForecastModel else { return }
         
         var datasets = [ChartCellModel.DataSet]()
-        //Daily forecast
         
         let dailyForecastMaxTemepraturePoints = getChartPoints(from: weatherForecastModel.dailyForecast.times, values: weatherForecastModel.dailyForecast.maxTemperatures, formatter: dateFormetter)
         
@@ -94,7 +98,7 @@ final class CityWeatherPresenter: CityWeatherPresenterProtocol {
         view?.configureDailyWeatherSection(with: [chartCellModel])
     }
     
-    private func showHourlyyWeather() {
+    func showHourlyyWeather() {
         guard let weatherForecastModel else { return }
         
         var datasets = [ChartCellModel.DataSet]()
@@ -116,7 +120,7 @@ final class CityWeatherPresenter: CityWeatherPresenterProtocol {
         view?.configureHourlyWeatherSection(with: [temperaTureChartCellModel, preceptationProbability])
     }
     
-    private func getChartPoints(from time: [Date], values: [Double], formatter: DateFormatter) -> [ChartCellModel.DataSet.Point] {
+    func getChartPoints(from time: [Date], values: [Double], formatter: DateFormatter) -> [ChartCellModel.DataSet.Point] {
         let dailyForecastX =  time.map({ formatter.string(from: $0) })
         let dailyForecastY = values
         let zippedValues = zip(dailyForecastX, dailyForecastY)
@@ -126,7 +130,7 @@ final class CityWeatherPresenter: CityWeatherPresenterProtocol {
         return points
     }
     
-    private func showError(with message: String) {
+    func showError(with message: String) {
         router?.showAlert(with: staticStrings.errorAlertControllerTitle, message: message, cancelButtonTitle: staticStrings.errorCancelButtonText)
     }
 

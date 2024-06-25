@@ -5,4 +5,5 @@ struct PlaceModelAfterDTO {
     let descritpion: String?
     let longitude: Decimal
     let latitude: Decimal
+    let uri: String
 }

@@ -19,8 +19,6 @@
 		FA08E2312C20675300CF63A0 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08E2242C20675300CF63A0 /* UIView + Extension.swift */; };
 		FA08E2322C20675300CF63A0 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08E2252C20675300CF63A0 /* UIViewController + Extension.swift */; };
 		FA08E2332C20675300CF63A0 /* ModuleTransitionableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08E2272C20675300CF63A0 /* ModuleTransitionableProtocol.swift */; };
-		FA08E2372C20678F00CF63A0 /* StandartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08E2352C20678F00CF63A0 /* StandartButton.swift */; };
-		FA08E2382C20678F00CF63A0 /* StandartTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08E2362C20678F00CF63A0 /* StandartTextField.swift */; };
 		FA08E23A2C2067EA00CF63A0 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08E2392C2067EA00CF63A0 /* UIColor + Extension.swift */; };
 		FA08E2402C2074A100CF63A0 /* CitySearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08E23F2C2074A100CF63A0 /* CitySearchTableViewController.swift */; };
 		FA08E2432C20761100CF63A0 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08E2422C20761100CF63A0 /* SearchController.swift */; };
@@ -43,6 +41,8 @@
 		FA08E26F2C21E4D100CF63A0 /* CurrentWeatherCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08E26E2C21E4D100CF63A0 /* CurrentWeatherCellModel.swift */; };
 		FA08E2712C22440900CF63A0 /* TableViewSectionHeaderFooterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08E2702C22440900CF63A0 /* TableViewSectionHeaderFooterProtocol.swift */; };
 		FA08E2732C22444100CF63A0 /* TableViewSectionHeaderFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08E2722C22444100CF63A0 /* TableViewSectionHeaderFooter.swift */; };
+		FA2319EF2C28CBA500311EBD /* UINavigationBar + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2319EE2C28CBA500311EBD /* UINavigationBar + Extension.swift */; };
+		FA2319F12C2ACEEE00311EBD /* PlacecTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2319F02C2ACEEE00311EBD /* PlacecTableView.swift */; };
 		FA2A36172C2385D800267BE4 /* HidebleSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A36162C2385D800267BE4 /* HidebleSectionHeaderView.swift */; };
 		FA2A36192C2385ED00267BE4 /* HidebleSectionHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A36182C2385ED00267BE4 /* HidebleSectionHeaderModel.swift */; };
 		FA2A361B2C23A22E00267BE4 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A361A2C23A22E00267BE4 /* ApiKeys.swift */; };
@@ -107,8 +107,6 @@
 		FA08E2242C20675300CF63A0 /* UIView + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		FA08E2252C20675300CF63A0 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		FA08E2272C20675300CF63A0 /* ModuleTransitionableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleTransitionableProtocol.swift; sourceTree = "<group>"; };
-		FA08E2352C20678F00CF63A0 /* StandartButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandartButton.swift; sourceTree = "<group>"; };
-		FA08E2362C20678F00CF63A0 /* StandartTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandartTextField.swift; sourceTree = "<group>"; };
 		FA08E2392C2067EA00CF63A0 /* UIColor + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		FA08E23F2C2074A100CF63A0 /* CitySearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchTableViewController.swift; sourceTree = "<group>"; };
 		FA08E2422C20761100CF63A0 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
@@ -131,6 +129,8 @@
 		FA08E26E2C21E4D100CF63A0 /* CurrentWeatherCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherCellModel.swift; sourceTree = "<group>"; };
 		FA08E2702C22440900CF63A0 /* TableViewSectionHeaderFooterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewSectionHeaderFooterProtocol.swift; sourceTree = "<group>"; };
 		FA08E2722C22444100CF63A0 /* TableViewSectionHeaderFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewSectionHeaderFooter.swift; sourceTree = "<group>"; };
+		FA2319EE2C28CBA500311EBD /* UINavigationBar + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar + Extension.swift"; sourceTree = "<group>"; };
+		FA2319F02C2ACEEE00311EBD /* PlacecTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacecTableView.swift; sourceTree = "<group>"; };
 		FA2A36162C2385D800267BE4 /* HidebleSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HidebleSectionHeaderView.swift; sourceTree = "<group>"; };
 		FA2A36182C2385ED00267BE4 /* HidebleSectionHeaderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HidebleSectionHeaderModel.swift; sourceTree = "<group>"; };
 		FA2A361A2C23A22E00267BE4 /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
@@ -244,6 +244,7 @@
 				FA08E2252C20675300CF63A0 /* UIViewController + Extension.swift */,
 				FA08E2392C2067EA00CF63A0 /* UIColor + Extension.swift */,
 				FA08E25E2C219B5900CF63A0 /* UISearchBar + Extension.swift */,
+				FA2319EE2C28CBA500311EBD /* UINavigationBar + Extension.swift */,
 			);
 			path = "UIKit + Extension";
 			sourceTree = "<group>";
@@ -263,9 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				FA2A36552C2606D400267BE4 /* TableViewCells */,
-				FA08E2412C2075EE00CF63A0 /* SearchBar */,
-				FA08E2352C20678F00CF63A0 /* StandartButton.swift */,
-				FA08E2362C20678F00CF63A0 /* StandartTextField.swift */,
+				FA08E2412C2075EE00CF63A0 /* SearchController */,
 			);
 			path = "Base UI";
 			sourceTree = "<group>";
@@ -310,12 +309,12 @@
 			path = Configurator;
 			sourceTree = "<group>";
 		};
-		FA08E2412C2075EE00CF63A0 /* SearchBar */ = {
+		FA08E2412C2075EE00CF63A0 /* SearchController */ = {
 			isa = PBXGroup;
 			children = (
 				FA08E2422C20761100CF63A0 /* SearchController.swift */,
 			);
-			path = SearchBar;
+			path = SearchController;
 			sourceTree = "<group>";
 		};
 		FA08E24E2C208EDA00CF63A0 /* Router */ = {
@@ -339,6 +338,7 @@
 		FA08E2562C20966500CF63A0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				FA2319F02C2ACEEE00311EBD /* PlacecTableView.swift */,
 				FA08E2612C21D64700CF63A0 /* CityCell */,
 			);
 			path = Cells;
@@ -788,7 +788,6 @@
 				FA08E25B2C20973D00CF63A0 /* TableHeaderFooterProtocol.swift in Sources */,
 				FA2A362A2C2449FF00267BE4 /* CoreDataStackProtocol.swift in Sources */,
 				FA892C442B6D79C0000D9298 /* Suggest.swift in Sources */,
-				FA08E2382C20678F00CF63A0 /* StandartTextField.swift in Sources */,
 				FA2A365A2C261E8B00267BE4 /* ChartTableViewCell.swift in Sources */,
 				FA08E2712C22440900CF63A0 /* TableViewSectionHeaderFooterProtocol.swift in Sources */,
 				FA08E2322C20675300CF63A0 /* UIViewController + Extension.swift in Sources */,
@@ -796,7 +795,6 @@
 				FA08E2502C208F2E00CF63A0 /* CitySearchRouterProtocol.swift in Sources */,
 				FA08E22C2C20675300CF63A0 /* TableViewAdapter.swift in Sources */,
 				FA08E22E2C20675300CF63A0 /* CellIdentifiableProtocol.swift in Sources */,
-				FA08E2372C20678F00CF63A0 /* StandartButton.swift in Sources */,
 				FA08E2432C20761100CF63A0 /* SearchController.swift in Sources */,
 				FA7D32252B8DEB6C0060A42B /* LocationModel.swift in Sources */,
 				FA2A36462C25E40F00267BE4 /* WeatherModelAfterDTO.swift in Sources */,
@@ -820,12 +818,14 @@
 				FA2A36282C2448E000267BE4 /* GeoObjectPersistentService.swift in Sources */,
 				FA08E2552C2090B600CF63A0 /* LocationServiceProtocol.swift in Sources */,
 				FA2A365C2C261E9500267BE4 /* ChartCellModel.swift in Sources */,
+				FA2319EF2C28CBA500311EBD /* UINavigationBar + Extension.swift in Sources */,
 				FA08E23A2C2067EA00CF63A0 /* UIColor + Extension.swift in Sources */,
 				FA2A36502C25FC0400267BE4 /* CityWeatherModuleStaticStrings.swift in Sources */,
 				FA2A36172C2385D800267BE4 /* HidebleSectionHeaderView.swift in Sources */,
 				FA5C59072B56AC2F005073D3 /* CityWeatherPresenter.swift in Sources */,
 				FA2C78662BA7863C00FB9D64 /* FontLibrary.swift in Sources */,
 				FA08E26F2C21E4D100CF63A0 /* CurrentWeatherCellModel.swift in Sources */,
+				FA2319F12C2ACEEE00311EBD /* PlacecTableView.swift in Sources */,
 				FA2A36192C2385ED00267BE4 /* HidebleSectionHeaderModel.swift in Sources */,
 				FA5C59092B56AC46005073D3 /* CityWeatherRouter.swift in Sources */,
 				FA08E2312C20675300CF63A0 /* UIView + Extension.swift in Sources */,

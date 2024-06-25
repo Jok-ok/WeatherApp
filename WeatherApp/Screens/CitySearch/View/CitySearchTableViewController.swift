@@ -3,10 +3,7 @@ import UIKit
 final class CitySearchTableViewController: UITableViewController {
     private let presenter: CitySearchPresenterProtocol
     private lazy var searchController = SearchController(searchResultsController: nil, searchResultUpdater: self)
-    private lazy var tableViewAdapter = TableViewAdapter(tableView: tableView)
-    private lazy var currentWeatherSection = TableViewSection<CurrentWeatherTableViewCell>()
-    private lazy var citiesTableViewSection = TableViewSection<PlaceTableViewCell>()
-    private lazy var favoriteTableViewSection = TableViewSection<PlaceTableViewCell>()
+    private lazy var customTableView: PlacecTableView = PlacecTableView(frame: .zero, style: .insetGrouped)
     
     init(presenter: CitySearchPresenterProtocol) {
         self.presenter = presenter
@@ -21,6 +18,7 @@ final class CitySearchTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView = customTableView
         presenter.viewDidLoad(with: self)
     }
 }
@@ -33,121 +31,72 @@ extension CitySearchTableViewController: CitySearchViewProtocol {
         
         setupTableViewInitialState(with: model.currentWeatherSectionHeader,
                                    cityHeaderViewModel: model.searchCitySectionHeader,
-                                   favoriteSectionViewModel: model.favoriteSectionHeader)
-        
-        refreshControl = UIRefreshControl()
-        refreshControl?.tintColor = .getAppColor(.accentColor)
-        refreshControl?.addTarget(self, action: #selector(refreshViewController), for: .valueChanged)
-        
-    }
-    
-    @objc private func refreshViewController() {
-        presenter.refreshViewController()
+                                   favoriteSectionHeaderModel: model.favoriteSectionHeader)
+        configureRefreshControl()
     }
     
     func endRefreshViewController() {
         refreshControl?.endRefreshing()
     }
     
-    private func setupTableViewInitialState(with weatherHeaderViewModel: SectionHeaderModel,
-                                            cityHeaderViewModel: SectionHeaderModel,
-                                            favoriteSectionViewModel: HidebleSectionHeaderModel) {
-        
-        favoriteTableViewSection.setTapHandler { [weak self] model in
-            self?.cityDidTaped(model: model)
-        }
-        
-        currentWeatherSection.setTapHandler { [weak self] model in
-            self?.currentWeatherCellDidTaped(model: model)
-        }
-        
-        citiesTableViewSection.setTapHandler { [weak self] model in
-            self?.cityDidTaped(model: model)
-        }
-        
-        tableViewAdapter.register(cellType: CurrentWeatherTableViewCell.self)
-        tableViewAdapter.register(headerFooterType: SectionHeaderView.self)
-        tableViewAdapter.register(cellType: PlaceTableViewCell.self)
-        
-        let favoriteTableViewSectionHeader = TableViewHeaderFooter<HidebleSectionHeaderView>(cellModel: favoriteSectionViewModel)
-        
-        let currentWeatherHeader = TableViewHeaderFooter<SectionHeaderView>(cellModel: weatherHeaderViewModel)
-        
-        let cityHeader = TableViewHeaderFooter<SectionHeaderView>(cellModel: cityHeaderViewModel)
-        
-        favoriteTableViewSection.setHeaderCell(with: favoriteTableViewSectionHeader)
-        currentWeatherSection.setHeaderCell(with: currentWeatherHeader)
-        citiesTableViewSection.setHeaderCell(with: cityHeader)
-        
-        tableViewAdapter.append(section: favoriteTableViewSection)
-        tableViewAdapter.append(section: currentWeatherSection)
-        tableViewAdapter.append(section: citiesTableViewSection)
-
-    }
-    
     func configureSearchBar(with placeholder: String, clearButtonText: String) {
         searchController.configure(placeholder: placeholder,
                                    clearButtonText: clearButtonText)
+        navigationItem.searchController = searchController
     }
     
     func configureCurrentWeatherSection(with model: CurrentWeatherCellModel) {
-        currentWeatherSection.items = [model]
-        tableViewAdapter.reloadSection(1)
+        customTableView.currentWeatherSection.items = [model]
+        customTableView.tableViewAdapter.reloadSection(1)
     }
     
     func configureSerchedCity(at row: Int, with model: PlaceCellModel) {
-        citiesTableViewSection.items[row] = model
-        tableViewAdapter.reloadRow(at: 2, row: row)
+        customTableView.citiesTableViewSection.items[row] = model
+        customTableView.tableViewAdapter.reloadRow(at: 2, row: row)
     }
     
     func configureSearchedCitiesTableViewSection(with models: [PlaceCellModel]) {
-        citiesTableViewSection.items = models
-        tableViewAdapter.reloadSection(2)
+        customTableView.citiesTableViewSection.items = models
+        customTableView.tableViewAdapter.reloadSection(2)
     }
     
     func configureCityTableViewSectionHeader(with text: String) {
         let cityHeader = TableViewHeaderFooter<SectionHeaderView>(cellModel: SectionHeaderModel(headerText: text))
-        citiesTableViewSection.setHeaderCell(with: cityHeader)
+        customTableView.citiesTableViewSection.setHeaderCell(with: cityHeader)
     }
     
     func configureFavoriteCitiesTableViewSection(with items: [PlaceCellModel]) {
-        favoriteTableViewSection.items = items
-        tableViewAdapter.reloadSection(0)
+        customTableView.favoriteTableViewSection.items = items
+        customTableView.tableViewAdapter.reloadSection(0)
     }
     
     func insertFavoriteCityInSection(with item: PlaceCellModel) {
-        favoriteTableViewSection.items.insert(item, at: 0)
-        tableViewAdapter.insertRow(at: 0, row: 0)
+        customTableView.favoriteTableViewSection.items.insert(item, at: 0)
+        customTableView.tableViewAdapter.insertRow(at: 0, row: 0)
     }
     
     func removeFavoriteCityInSection(from row: Int) {
-        favoriteTableViewSection.items.remove(at: row)
-        tableViewAdapter.removeRow(at: 0, row: row)
+        customTableView.favoriteTableViewSection.items.remove(at: row)
+        customTableView.tableViewAdapter.removeRow(at: 0, row: row)
+    }
+    
+    func endEditingSearchBar() {
+        searchController.searchBar.endEditing(true)
     }
     
     func hideFavoriteSection() {
-        tableViewAdapter.hideSection(with: 0)
-        tableViewAdapter.reloadSection(0)
+        customTableView.tableViewAdapter.hideSection(with: 0)
+        customTableView.tableViewAdapter.reloadSection(0)
     }
     
     func showFavoriteSection() {
-        tableViewAdapter.showSection(with: 0)
-        tableViewAdapter.reloadSection(0)
+        customTableView.tableViewAdapter.showSection(with: 0)
+        customTableView.tableViewAdapter.reloadSection(0)
     }
     
     func configureFavoriteSectionHeader(with model: HidebleSectionHeaderModel) {
         let favoriteTableViewSectionHeader = TableViewHeaderFooter<HidebleSectionHeaderView>(cellModel: model)
-        favoriteTableViewSection.setHeaderCell(with: favoriteTableViewSectionHeader)
-    }
-}
-
-private extension CitySearchTableViewController {
-    func cityDidTaped(model: PlaceCellModel) {
-        presenter.onCityDidTapped(model: model)
-    }
-    
-    func currentWeatherCellDidTaped(model: CurrentWeatherCellModel) {
-        presenter.onCurrentCityDidTapped()
+        customTableView.favoriteTableViewSection.setHeaderCell(with: favoriteTableViewSectionHeader)
     }
 }
 
@@ -156,22 +105,44 @@ private extension CitySearchTableViewController {
     func configureAppearance() {
         view.backgroundColor = .getAppColor(.backgroundColor)
         configureNavigationBarAppearance()
-        configureTableViewAppearance()
-    }
-
-    func configureNavigationBarAppearance() {
-        navigationItem.searchController = searchController
-        let navigationBarAppearace = UINavigationBar.appearance()
-        navigationItem.largeTitleDisplayMode = .always
-        
-        //TODO: - Вынести в экстеншн
-        navigationBarAppearace.titleTextAttributes = [.foregroundColor: UIColor.getAppColor(.accentColor)]
-        navigationBarAppearace.largeTitleTextAttributes = [.foregroundColor: UIColor.getAppColor(.accentColor)]
     }
     
-    func configureTableViewAppearance() {
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = .getAppColor(.backgroundColor)
+    func configureNavigationBarAppearance() {
+        navigationController?.navigationBar.setTitleTextColor(.getAppColor(.accentColor))
+    }
+}
+
+//MARK: - TableView
+private extension CitySearchTableViewController {
+    func setupTableViewInitialState(with weatherHeaderViewModel: SectionHeaderModel,
+                                    cityHeaderViewModel: SectionHeaderModel,
+                                    favoriteSectionHeaderModel: HidebleSectionHeaderModel) {
+        
+        customTableView.setupTableViewInitialState(with: weatherHeaderViewModel, cityHeaderViewModel: cityHeaderViewModel, favoriteSectionHeaderModel: favoriteSectionHeaderModel)
+        bindSectionActions()
+    }
+    
+    func bindSectionActions() {
+        customTableView.favoriteTableViewSection.setTapHandler { [weak self] model in
+            self?.presenter.onCityDidTapped(model: model)
+        }
+        customTableView.currentWeatherSection.setTapHandler { [weak self] _ in
+            self?.presenter.onCurrentCityDidTapped()
+        }
+        customTableView.citiesTableViewSection.setTapHandler { [weak self] model in
+            self?.presenter.onCityDidTapped(model: model)
+        }
+    }
+    
+    //MARK: - RefreshControl
+    private func configureRefreshControl() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.tintColor = .getAppColor(.accentColor)
+        refreshControl?.addTarget(self, action: #selector(refreshViewController), for: .valueChanged)
+    }
+    
+    @objc func refreshViewController() {
+        presenter.refreshViewController()
     }
 }
 

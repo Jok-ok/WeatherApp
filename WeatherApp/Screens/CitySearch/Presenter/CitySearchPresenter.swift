@@ -31,14 +31,13 @@ final class CitySearchPresenter {
 //MARK: - CitySearchPresenter protocol
 extension CitySearchPresenter: CitySearchPresenterProtocol {
     func viewDidLoad(with view: CitySearchViewProtocol) {
+        //TODO: - Подумать как это разнести
         self.view = view
         
         locationService.startUpdatingLocation()
-        
         fetchFavoritePersistentGeoObjects()
         
         var favoriteSectionHeaderText = staticStrings.favoriteSectionShowedTitle
-        
         if favoriteCitiesCellModels.isEmpty {
             favoriteSectionHeaderText = staticStrings.favoriteSectionEmptyTitle
         }
@@ -62,7 +61,6 @@ extension CitySearchPresenter: CitySearchPresenterProtocol {
     
     func searchQueryDidUpdated(with text: String) {
         timer?.invalidate()
-        
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self] _ in
             
             if text == "" { return }
@@ -74,19 +72,25 @@ extension CitySearchPresenter: CitySearchPresenterProtocol {
                 case .failure(let error):
                     self?.showError(with: error.localizedDescription)
                 }
+                self?.timer?.invalidate()
             }
         })
     }
     
     func refreshViewController() {
         getCurrentWeatherInCurrentLocation()
+        searchedCitiesCellModels = []
+        view?.configureSearchedCitiesTableViewSection(with: searchedCitiesCellModels)
     }
     
     func onCityDidTapped(model: PlaceCellModel) {
+        view?.endEditingSearchBar()
         router.showWeatherFor(city: model.cityName, latitude: model.latitude, longitude: model.longitude, weatherNetworkService: self.weatherNetworkService)
+        
     }
     
     func onCurrentCityDidTapped() {
+        view?.endEditingSearchBar()
         if let location = locationService.getLocation(), let city = currentWeather?.city, city != staticStrings.undefinedLocation {
             router.showWeatherFor(city: city, latitude: Decimal(location.latitude), longitude: Decimal(location.longitude), weatherNetworkService: self.weatherNetworkService)
         } else {
@@ -104,14 +108,12 @@ private extension CitySearchPresenter {
     
     private func fetchFavoritePersistentGeoObjects() {
         self.favoriteCitiesCellModels = geoObjectPersistenceService.fetchGeoObjects().map({ [weak self] geoObject in
-            PlaceCellModel(with: geoObject) { [weak self] model in
-                self?.onFavoriteButtonDidTapped(model: model)
-            }
+            PlaceCellModel(with: geoObject) { [weak self] model in self?.onFavoriteButtonDidTapped(model: model) }
         })
     }
     
-    private func saveToPersistentGeoObject(title: String, subtitle: String, longitude: Decimal, latitude: Decimal ) {
-        geoObjectPersistenceService.createGeoObject(title: title, subtitle: subtitle, longitude: longitude, latitude: latitude)
+    private func saveToPersistentGeoObject(title: String, subtitle: String, longitude: Decimal, latitude: Decimal, uri: String) {
+        geoObjectPersistenceService.createGeoObject(title: title, subtitle: subtitle, longitude: longitude, latitude: latitude, uri: uri)
     }
     
     private func deleteFromPersistentStorage(title: String, subtitle: String) {
@@ -122,39 +124,48 @@ private extension CitySearchPresenter {
         let staticStrings = CitySearchViewStaticStrings()
         self.view?.configureCityTableViewSectionHeader(with: staticStrings.searchCitySectionHeader)
         self.searchedCitiesCellModels = placeModels.compactMap({ placeModel in
-            PlaceCellModel(cityName: placeModel.name, subtitle: placeModel.descritpion ?? "", onFavoriteButtonTappedAction: { [weak self] model in
+            PlaceCellModel(cityName: placeModel.name, 
+                           subtitle: placeModel.descritpion ?? "",
+                           isFavorite: favoriteCitiesCellModels.contains(where: {$0.uri == placeModel.uri}),
+                           onFavoriteButtonTappedAction: { [weak self] model in
                 self?.onFavoriteButtonDidTapped(model: model)
-            }, latitude: placeModel.latitude, longitude: placeModel.longitude)
+            }, latitude: placeModel.latitude, longitude: placeModel.longitude, uri: placeModel.uri)
         })
         self.view?.configureSearchedCitiesTableViewSection(with: self.searchedCitiesCellModels)
     }
     
     private func onFavoriteButtonDidTapped(model: PlaceCellModel) -> Void {
         if model.isFavorite {
-            saveToPersistentGeoObject(title: model.cityName, subtitle: model.subtitle, longitude: model.longitude, latitude: model.latitude)
-            favoriteCitiesCellModels.insert(model, at: 0)
-            view?.insertFavoriteCityInSection(with: model)
+            createNewFavorite(model: model)
         } else {
-            while let favoriteCityIndex = favoriteCitiesCellModels.firstIndex(where: { ($0.cityName == model.cityName) && ($0.subtitle == model.subtitle) }) {
-                favoriteCitiesCellModels.remove(at: favoriteCityIndex)
-                view?.removeFavoriteCityInSection(from: favoriteCityIndex)
-            }
-            
-            deleteFromPersistentStorage(title: model.cityName, subtitle: model.subtitle)
-            
-            let searchCityIndex = searchedCitiesCellModels.firstIndex(where: { ($0.cityName == model.cityName) && ($0.subtitle == model.subtitle) })
-            
-            if let searchCityIndex {
-                view?.configureSerchedCity(at: searchCityIndex, with: model)
-            }
+            removeFromFavorite(model: model)
+        }
+    }
+    
+    private func createNewFavorite(model: PlaceCellModel){
+        saveToPersistentGeoObject(title: model.cityName, subtitle: model.subtitle, longitude: model.longitude, latitude: model.latitude, uri: model.uri)
+        favoriteCitiesCellModels.insert(model, at: 0)
+        view?.insertFavoriteCityInSection(with: model)
+    }
+    
+    private func removeFromFavorite(model: PlaceCellModel){
+        while let favoriteCityIndex = favoriteCitiesCellModels.firstIndex(where: { $0.uri == model.uri }) {
+            favoriteCitiesCellModels.remove(at: favoriteCityIndex)
+            view?.removeFavoriteCityInSection(from: favoriteCityIndex)
+        }
+        
+        deleteFromPersistentStorage(title: model.cityName, subtitle: model.subtitle)
+        
+        let searchCityIndex = searchedCitiesCellModels.firstIndex(where: { $0.uri == model.uri })
+        
+        if let searchCityIndex {
+            view?.configureSerchedCity(at: searchCityIndex, with: model)
         }
     }
     
     private func hideFavoriteSectionButtonDidTapped() {
-        
+        //TODO: - Сделать читабельней
         isFavoriteSectionHided.toggle()
-        
-        let staticStrings = CitySearchViewStaticStrings()
         
         var favoriteSectionHeaderText = staticStrings.favoriteSectionShowedTitle
         
@@ -177,6 +188,7 @@ private extension CitySearchPresenter {
     }
     
     private func getCurrentWeatherInCurrentLocation() {
+        //TODO: - Переписать к чертям
         if let location = locationService.getLocation() {
             let latitude = Decimal(location.latitude)
             let longitude = Decimal(location.longitude)

@@ -47,7 +47,7 @@ final class GeocoderNetworkService: GeocoderNetworkServiceProtocol {
                 let postion = geoObject.point
                 let longlat = postion.pos.components(separatedBy: " ")
                 if let longitude = Decimal(string: longlat[0]), let latitude = Decimal(string: longlat[1]) {
-                    return PlaceModelAfterDTO(name: geoObject.name, descritpion: geoObject.description, longitude: longitude, latitude: latitude)
+                    return PlaceModelAfterDTO(name: geoObject.name, descritpion: geoObject.description, longitude: longitude, latitude: latitude, uri: geoObject.uri ?? "")
                 } else { return nil }
             }
             return placeModels

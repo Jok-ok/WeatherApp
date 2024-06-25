@@ -8,12 +8,13 @@ final class GeoObjectPersistentService: GeoObjectServiceProtocol {
     }
     
     @discardableResult
-    func createGeoObject(title: String, subtitle: String, longitude: Decimal, latitude: Decimal) -> GeoObjectPersistent {
+    func createGeoObject(title: String, subtitle: String, longitude: Decimal, latitude: Decimal, uri: String) -> GeoObjectPersistent {
         let newGeoObject = GeoObjectPersistent(context: coreDataStack.context)
         newGeoObject.title = title
         newGeoObject.subtitle = subtitle
         newGeoObject.longitude = NSDecimalNumber(decimal: longitude)
         newGeoObject.latitude = NSDecimalNumber(decimal: latitude)
+        newGeoObject.uri = uri
         coreDataStack.saveContext()
         return newGeoObject
     }

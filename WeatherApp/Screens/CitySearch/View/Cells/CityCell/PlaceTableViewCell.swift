@@ -31,13 +31,7 @@ final class PlaceTableViewCell: UITableViewCell, CellIdentifiableProtocol, CellC
     }
     
     private func setCellFavorite(isFavorite: Bool) {
-        var starImage: UIImage?
-        
-        if isFavorite {
-            starImage = UIImage(systemName: "star.fill")
-        } else {
-            starImage = UIImage(systemName: "star")
-        }
+        var starImage = UIImage(systemName: isFavorite ? "star.fill" : "star")
 
         guard let accentColor = UIColor.getAppColor(.accentColor) else { return }
         favoriteButton.setImage(starImage?.withTintColor(accentColor), for: .normal)
@@ -75,10 +69,10 @@ private extension PlaceTableViewCell {
     func configureFavoriteButtonAppearance() {
         setCellFavorite(isFavorite: false)
         
-        let action = UIAction { _ in
-            self.model?.isFavorite.toggle()
-            self.favoriteButtonDidTaped()
-            self.setCellFavorite(isFavorite: self.model?.isFavorite ?? false)
+        let action = UIAction { [weak self] _ in
+            self?.model?.isFavorite.toggle()
+            self?.favoriteButtonDidTaped()
+            self?.setCellFavorite(isFavorite: self?.model?.isFavorite ?? false)
         }
         
         favoriteButton.addAction(action, for: .touchUpInside)

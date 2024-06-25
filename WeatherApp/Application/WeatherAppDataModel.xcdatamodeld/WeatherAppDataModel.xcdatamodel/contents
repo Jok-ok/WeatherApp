@@ -5,5 +5,6 @@
         <attribute name="longitude" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="subtitle" optional="YES" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
+        <attribute name="uri" optional="YES" attributeType="String"/>
     </entity>
 </model>

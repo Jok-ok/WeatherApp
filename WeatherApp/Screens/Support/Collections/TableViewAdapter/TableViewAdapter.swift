@@ -1,7 +1,7 @@
 import UIKit
 
 class TableViewAdapter: NSObject {
-    private let tableView: UITableView
+    private weak var tableView: UITableView?
     private var sections: [TableViewSectionProtocol] = []
     private var hidedSectionIndexes = Set<Int>()
     
@@ -21,16 +21,16 @@ class TableViewAdapter: NSObject {
     }
     
     func register<CellType: UITableViewCell>(cellType: CellType.Type) where CellType: CellIdentifiableProtocol {
-        tableView.register(cellType, forCellReuseIdentifier: cellType.reuseIdentifier)
+        tableView?.register(cellType, forCellReuseIdentifier: cellType.reuseIdentifier)
     }
     
     func register<CellType: UITableViewHeaderFooterView>(headerFooterType: CellType.Type) where CellType: CellIdentifiableProtocol {
-        tableView.register(headerFooterType, forHeaderFooterViewReuseIdentifier: headerFooterType.reuseIdentifier)
+        tableView?.register(headerFooterType, forHeaderFooterViewReuseIdentifier: headerFooterType.reuseIdentifier)
     }
     
     private func setupTable() {
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView?.delegate = self
+        tableView?.dataSource = self
     }
     
     func configure(with sections: [TableViewSectionProtocol]) {
@@ -42,26 +42,26 @@ class TableViewAdapter: NSObject {
     }
     
     func reloadTableView() {
-        tableView.reloadData()
+        tableView?.reloadData()
     }
     
     func reloadSection(_ section: Int, with animation: UITableView.RowAnimation = .automatic ) {
-        tableView.reloadSections(IndexSet(integer: section), with: animation)
+        tableView?.reloadSections(IndexSet(integer: section), with: animation)
     }
     
     func insertRow(at section: Int, row: Int) {
         if !hidedSectionIndexes.contains(section) {
-            tableView.insertRows(at: [IndexPath(row: row, section: section)], with: .automatic) }
+            tableView?.insertRows(at: [IndexPath(row: row, section: section)], with: .automatic) }
     }
     
     func removeRow(at section: Int, row: Int) {
         if !hidedSectionIndexes.contains(section) {
-            tableView.deleteRows(at: [IndexPath(row: row, section: section)], with: .automatic) }
+            tableView?.deleteRows(at: [IndexPath(row: row, section: section)], with: .automatic) }
     }
     
     func reloadRow(at section: Int, row: Int) {
         if !hidedSectionIndexes.contains(section) {
-            tableView.reloadRows(at: [IndexPath(row: row, section: section)], with: .automatic) }
+            tableView?.reloadRows(at: [IndexPath(row: row, section: section)], with: .automatic) }
     }
 }
 

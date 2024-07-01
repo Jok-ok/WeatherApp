@@ -2,9 +2,9 @@ import Foundation
 
 protocol APIEndpointProtocol {
     var urlString: String { get }
-    var queryItems: [String:String] { get }
-    var headers: [String:String] { get }
-    var method: HTTPMethod { get } 
+    var queryItems: [String: String] { get }
+    var headers: [String: String] { get }
+    var method: HTTPMethod { get }
 }
 
 enum HTTPMethod: String {

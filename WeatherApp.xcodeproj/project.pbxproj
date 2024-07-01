@@ -286,8 +286,9 @@
 			children = (
 				FA08E2572C20966900CF63A0 /* Model */,
 				FA08E2562C20966500CF63A0 /* Cells */,
-				FA08E23F2C2074A100CF63A0 /* CitySearchTableViewController.swift */,
+				FA2319F02C2ACEEE00311EBD /* PlacecTableView.swift */,
 				FA08E24C2C208E4200CF63A0 /* CitySearchViewProtocol.swift */,
+				FA08E23F2C2074A100CF63A0 /* CitySearchTableViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -338,7 +339,6 @@
 		FA08E2562C20966500CF63A0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				FA2319F02C2ACEEE00311EBD /* PlacecTableView.swift */,
 				FA08E2612C21D64700CF63A0 /* CityCell */,
 			);
 			path = Cells;
@@ -694,6 +694,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FADBCAAF2AA39E4C00A28511 /* Build configuration list for PBXNativeTarget "WeatherApp" */;
 			buildPhases = (
+				FA2A7C9D2C32B6F9002175E6 /* Swiftlint */,
 				FADBCA972AA39E4B00A28511 /* Sources */,
 				FADBCA982AA39E4B00A28511 /* Frameworks */,
 				FADBCA992AA39E4B00A28511 /* Resources */,
@@ -718,7 +719,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					FADBCA9A2AA39E4B00A28511 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -759,6 +760,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FA2A7C9D2C32B6F9002175E6 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint > /dev/null; then\n    swiftlint --fix\n    swiftlint\nelse\n    echo \"warning: `swiftlint` command not found - See https://github.com/realm/SwiftLint#installation for installation instructions.\"\n    exit 1\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FADBCA972AA39E4B00A28511 /* Sources */ = {
@@ -869,6 +891,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = accentColor;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -932,6 +955,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = accentColor;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -991,6 +1015,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2A8FN782JR;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherApp/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1018,6 +1043,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2A8FN782JR;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherApp/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

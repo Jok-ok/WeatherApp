@@ -5,4 +5,3 @@ extension UIColor {
         UIColor(named: color.rawValue)
     }
 }
-

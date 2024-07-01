@@ -3,8 +3,8 @@ import Foundation
 class SuggestNetworkService: SuggestNetworkServiceProtocol {
     private let apiKey = ApiKeys.suggestApiKey
     private let urlString = "https://suggest-maps.yandex.ru/v1/suggest"
-    
-    func getSuggests(for prompt: String, completion: @escaping (Result<[Suggest], APIErrors>) -> ()) {
+
+    func getSuggests(for prompt: String, completion: @escaping (Result<[Suggest], APIErrors>) -> Void) {
         let queryItems = [
             URLQueryItem(name: "apikey", value: apiKey),
             URLQueryItem(name: "text", value: prompt),
@@ -15,9 +15,9 @@ class SuggestNetworkService: SuggestNetworkServiceProtocol {
         guard var url = URL(string: urlString) else {
             completion(.failure(.invalidUrl))
             return }
-        
+
         url.append(queryItems: queryItems)
-        
+
         let session = URLSession.shared
         session.dataTask(with: url) { data, response, error in
             if let error = error {
@@ -26,7 +26,7 @@ class SuggestNetworkService: SuggestNetworkServiceProtocol {
                 }
                 return
             }
-            
+
             guard let response = response as? HTTPURLResponse else {
                 DispatchQueue.main.async {
                     completion(.failure(.requestFailed(description: "Request failed")))
@@ -34,21 +34,21 @@ class SuggestNetworkService: SuggestNetworkServiceProtocol {
                 }
                 return
             }
-            
+
             guard response.statusCode == 200 else {
                 DispatchQueue.main.async {
                     completion(.failure(.invalidStatusCode(statusCode: response.statusCode)))
                 }
                 return
             }
-            
+
             guard let data = data else {
                 DispatchQueue.main.async {
                     completion(.failure(.invalidData))
                 }
                 return
             }
-            
+
             do {
                 let suggests = try JSONDecoder().decode(SuggestResults.self, from: data)
                 print(suggests)
@@ -63,4 +63,3 @@ class SuggestNetworkService: SuggestNetworkServiceProtocol {
         }.resume()
     }
 }
-

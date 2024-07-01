@@ -46,10 +46,4 @@ struct Subtitle: Codable {
 // MARK: - Title
 struct Title: Codable {
     let text: String
-    let hl: [Hl]?
-}
-
-// MARK: - Hl
-struct Hl: Codable {
-    let begin, end: Int?
 }

@@ -2,13 +2,17 @@ import CoreData
 
 final class GeoObjectPersistentService: GeoObjectServiceProtocol {
     private let coreDataStack: CoreDataStackProtocol
-    
+
     init(coreDataStack: CoreDataStackProtocol) {
         self.coreDataStack = coreDataStack
     }
-    
+
     @discardableResult
-    func createGeoObject(title: String, subtitle: String, longitude: Decimal, latitude: Decimal, uri: String) -> GeoObjectPersistent {
+    func createGeoObject(title: String,
+                         subtitle: String,
+                         longitude: Decimal,
+                         latitude: Decimal,
+                         uri: String) -> GeoObjectPersistent {
         let newGeoObject = GeoObjectPersistent(context: coreDataStack.context)
         newGeoObject.title = title
         newGeoObject.subtitle = subtitle
@@ -18,7 +22,7 @@ final class GeoObjectPersistentService: GeoObjectServiceProtocol {
         coreDataStack.saveContext()
         return newGeoObject
     }
-    
+
     func fetchGeoObjects() -> [GeoObjectPersistent] {
         let request = GeoObjectPersistent.fetchRequest()
         do {
@@ -28,13 +32,13 @@ final class GeoObjectPersistentService: GeoObjectServiceProtocol {
             return []
         }
     }
-    
+
     func deleteGeoObject(with name: String, subtitle: String) {
         let request = GeoObjectPersistent.fetchRequest()
         let titleCondition = NSPredicate(format: "title == %@", name)
         let subtitileCondidtion = NSPredicate(format: "subtitle == %@", subtitle)
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [titleCondition, subtitileCondidtion])
-        
+
         do {
             let geoObjectsToDelete = try coreDataStack.context.fetch(request)
             for geoObjectToDelete in geoObjectsToDelete {

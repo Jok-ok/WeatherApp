@@ -8,8 +8,8 @@ final class PlaceCellModel {
     let longitude: Decimal
     let uri: String
     let onFavoriteButtonTappedAction: ((PlaceCellModel) -> Void)?
-    
-    init(cityName: String, 
+
+    init(cityName: String,
          subtitle: String,
          isFavorite: Bool = false,
          onFavoriteButtonTappedAction: ((PlaceCellModel) -> Void)?,
@@ -27,8 +27,17 @@ final class PlaceCellModel {
     }
 }
 extension PlaceCellModel {
-    convenience init(with persistentObject: GeoObjectPersistent, onFavoriteButtonTappedAction: ((PlaceCellModel) -> Void)?) {
-        //TODO: Развернуть нормально
-        self.init(cityName: persistentObject.title ?? "", subtitle: persistentObject.subtitle ?? "", isFavorite: true, onFavoriteButtonTappedAction: onFavoriteButtonTappedAction, latitude: persistentObject.latitude?.decimalValue ?? 0, longitude: persistentObject.longitude?.decimalValue ?? 0, uri: persistentObject.uri ?? "")
+    convenience init(
+        with persistentObject: GeoObjectPersistent,
+        onFavoriteButtonTappedAction: ((PlaceCellModel) -> Void)?
+    ) {
+        self.init(cityName: persistentObject.title ?? "",
+                  subtitle: persistentObject.subtitle ?? "",
+                  isFavorite: true,
+                  onFavoriteButtonTappedAction:
+                    onFavoriteButtonTappedAction,
+                  latitude: persistentObject.latitude?.decimalValue ?? 0,
+                  longitude: persistentObject.longitude?.decimalValue ?? 0,
+                  uri: persistentObject.uri ?? "")
     }
 }

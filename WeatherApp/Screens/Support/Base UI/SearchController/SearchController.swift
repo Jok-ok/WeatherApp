@@ -6,14 +6,14 @@ final class SearchController: UISearchController {
         self.searchResultsUpdater = searchResultUpdater
         configureAppearance()
     }
-    
+
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func configure(placeholder: String, clearButtonText: String? = nil) {
-        
+
         if let clearButtonText {
             searchBar.setCancelButton(text: clearButtonText, with: .getAppColor(.accentColor))
         } else {
@@ -25,12 +25,12 @@ final class SearchController: UISearchController {
     }
 }
 
-//MARK: - Appearance
+// MARK: - Appearance
 private extension SearchController {
     func configureAppearance() {
         configureSearchBarAppearance()
     }
-    
+
     func configureSearchBarAppearance() {
         searchBar.setClearButtonColor(to: .getAppColor(.accentOp))
         searchBar.barTintColor = .getAppColor(.accentColor)

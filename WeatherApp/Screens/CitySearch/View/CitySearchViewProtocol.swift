@@ -3,7 +3,7 @@ import Foundation
 protocol CitySearchViewProtocol: AnyObject {
     func setupInitialState(with model: CitySearchViewModel)
     func configureCurrentWeatherSection(with model: CurrentWeatherCellModel)
-    func configureSerchedCity(at row: Int, with model: PlaceCellModel) 
+    func configureSerchedCity(at row: Int, with model: PlaceCellModel)
     func configureSearchedCitiesTableViewSection(with models: [PlaceCellModel])
     func configureCityTableViewSectionHeader(with text: String)
     func configureFavoriteCitiesTableViewSection(with: [PlaceCellModel])

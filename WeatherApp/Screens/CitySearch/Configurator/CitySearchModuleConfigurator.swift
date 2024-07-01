@@ -8,7 +8,7 @@ final class CitySearchModuleConfigurator {
         let geoObjectPersistanceService: GeoObjectServiceProtocol
         let weatherService: WeatherNetworkServiceProtocol
     }
-    
+
     static func configure(with dependencies: Dependecies) -> UIViewController {
         let router = CitySearchRouter(navigationController: dependencies.navigationController)
         let presenter = CitySearchPresenter(router: router, weatherService: dependencies.weatherService,
@@ -16,7 +16,7 @@ final class CitySearchModuleConfigurator {
                                             geocoderNetworkService: dependencies.geocodeService,
                                             geoObjectPersistenceService: dependencies.geoObjectPersistanceService)
         let view = CitySearchTableViewController(presenter: presenter)
-        
+
         return view
     }
 }

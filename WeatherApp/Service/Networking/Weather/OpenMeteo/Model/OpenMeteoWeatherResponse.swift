@@ -102,7 +102,6 @@ struct Hourly: Codable {
     }
 }
 
-
 enum WeatherCodes: Int, Codable {
     case clearSky = 0
     case mainlyClear = 1

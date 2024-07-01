@@ -1,5 +1,5 @@
 import Foundation
 
 protocol SuggestNetworkServiceProtocol {
-    func getSuggests(for prompt: String, completion: @escaping (Result<[Suggest], APIErrors>) -> ()) 
+    func getSuggests(for prompt: String, completion: @escaping (Result<[Suggest], APIErrors>) -> Void)
 }

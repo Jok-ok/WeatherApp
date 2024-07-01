@@ -59,7 +59,7 @@ enum Condition: String, Codable {
     case thunderstorm = "thunderstorm"
     case thunderstormWithRain = "thunderstorm-with-rain"
     case thunderstormWithHail = "thunderstorm-with-hail"
-    
+
     var description: String {
         switch self {
         case .clear:

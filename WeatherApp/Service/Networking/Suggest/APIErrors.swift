@@ -8,7 +8,7 @@ enum APIErrors: Error {
     case invalidStatusCode(statusCode: Int)
     case unknownError(error: Error)
     case noDataInResponse
-    
+
     var localizedDescription: String {
         switch self {
         case .invalidUrl: return "Invalid URL"

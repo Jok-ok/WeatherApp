@@ -8,7 +8,7 @@ final class CityWeatherModuleConfigurator {
         let longitude: Decimal
         let latitude: Decimal
     }
-    
+
     static func configure(with dependencies: Dependecies ) -> CityWeatherViewController {
         let router = CityWeatherRouter(navigationController: dependencies.navigationController)
         let presenter = CityWeatherPresenter(router: router,
@@ -17,7 +17,7 @@ final class CityWeatherModuleConfigurator {
                                              latitude: dependencies.latitude,
                                              cityName: dependencies.cityName)
         let view = CityWeatherViewController(presenter: presenter)
-        
+
         return view
     }
 }

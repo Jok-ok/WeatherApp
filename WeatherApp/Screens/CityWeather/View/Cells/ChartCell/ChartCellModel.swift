@@ -8,21 +8,22 @@ final class ChartCellModel {
         self.linesDatasets = linesDatasets
         self.title = title
     }
-    
+
     struct DataSet {
-        struct Point {
-            let x: String
-            let y: Double
-        }
         let points: [Point]
         let colorSceme: ColorScheme
     }
-    
+
+    struct Point {
+        let xVar: String
+        let yVar: Double
+    }
+
     enum ColorScheme: Int {
         case standart
         case green
         case orange
-        
+
         var accentColor: UIColor {
             switch self {
             case .standart:
@@ -43,7 +44,7 @@ final class ChartCellModel {
                     .systemOrange.withAlphaComponent(0.5)
             }
         }
-        
+
     }
-    
+
 }

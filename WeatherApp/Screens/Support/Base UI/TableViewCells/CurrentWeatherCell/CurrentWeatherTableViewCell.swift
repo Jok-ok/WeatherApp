@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 final class CurrentWeatherTableViewCell: UITableViewCell, CellIdentifiableProtocol, CellConfigurableProtocol {
     typealias Model = CurrentWeatherCellModel
@@ -41,13 +42,17 @@ private extension CurrentWeatherTableViewCell {
         configureTemperatureLabelAppearance()
         configureConditionLabelAppearance()
 
-        contentView.addSubview(cityLabel)
-        contentView.addSubview(temperatureLabel)
-        contentView.addSubview(conditionLabel)
+        addSubviews()
 
         constraintTemperatureLabel()
         constraintCityLabel()
         constraintConditionLabel()
+    }
+
+    func addSubviews() {
+        contentView.addSubview(cityLabel)
+        contentView.addSubview(temperatureLabel)
+        contentView.addSubview(conditionLabel)
     }
 
     func configureCityLabelAppearance() {
@@ -75,54 +80,35 @@ private extension CurrentWeatherTableViewCell {
     }
 
     func constraintCityLabel() {
-        cityLabel.translatesAutoresizingMaskIntoConstraints = false
-
         let insets = 25.0
 
-        NSLayoutConstraint.activate([
-            cityLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: insets),
-            cityLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -insets),
-            cityLabel.widthAnchor.constraint(
-                lessThanOrEqualTo: contentView.widthAnchor,
-                multiplier: 0.5,
-                constant: -insets
-            ),
-            cityLabel.leadingAnchor.constraint(equalTo: temperatureLabel.trailingAnchor, constant: insets),
-            cityLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -insets)
-        ])
+        cityLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(insets)
+            make.trailing.equalToSuperview().offset(-insets)
+            make.leading.equalTo(contentView.snp.centerX)
+            make.bottom.equalToSuperview().inset(insets)
+        }
     }
 
     func constraintTemperatureLabel() {
-        temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
-
         let insets = 25.0
 
-        NSLayoutConstraint.activate([
-            temperatureLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: insets),
-            temperatureLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: insets),
-            temperatureLabel.widthAnchor.constraint(
-                lessThanOrEqualTo: contentView.widthAnchor,
-                multiplier: 0.5,
-                constant: -insets
-            )
-        ])
+        temperatureLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(insets)
+            make.leading.equalToSuperview().inset(insets)
+            make.trailing.equalTo(contentView.snp.centerX).offset(-insets)
+        }
     }
 
     func constraintConditionLabel() {
-        conditionLabel.translatesAutoresizingMaskIntoConstraints = false
-
         let insets = 25.0
-        let interItemInset = 10.0
+        let interItemOffset = 10.0
 
-        NSLayoutConstraint.activate([
-            conditionLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: interItemInset),
-            conditionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: insets),
-            conditionLabel.widthAnchor.constraint(
-                lessThanOrEqualTo: contentView.widthAnchor,
-                multiplier: 0.5,
-                constant: -insets),
-            conditionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -insets),
-            conditionLabel.trailingAnchor.constraint(equalTo: cityLabel.leadingAnchor, constant: -insets)
-        ])
+        conditionLabel.snp.makeConstraints { make in
+            make.top.equalTo(temperatureLabel.snp.bottom).offset(interItemOffset)
+            make.leading.equalToSuperview().offset(insets)
+            make.bottom.equalToSuperview().inset(insets)
+            make.trailing.equalTo(contentView.snp.centerX).offset(-insets)
+        }
     }
 }

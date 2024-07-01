@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 final class HidebleSectionHeaderView: UITableViewHeaderFooterView, CellIdentifiableProtocol, CellConfigurableProtocol {
     typealias Model = HidebleSectionHeaderModel
@@ -29,9 +30,15 @@ private extension HidebleSectionHeaderView {
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         configureLabelAppearance()
         configureEyeButtonAppearance()
+        addSubviews()
 
         constraintEyeButton()
         constraintLabel()
+    }
+
+    func addSubviews() {
+        contentView.addSubview(eyeButton)
+        contentView.addSubview(headerTextLabel)
     }
 
     func configureLabelAppearance() {
@@ -50,29 +57,23 @@ private extension HidebleSectionHeaderView {
     }
 
     func constraintLabel() {
-        headerTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(headerTextLabel)
         let insets = 10.0
 
-        NSLayoutConstraint.activate([
-            headerTextLabel.trailingAnchor.constraint(lessThanOrEqualTo: eyeButton.leadingAnchor, constant: -insets),
-            headerTextLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
-            headerTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: insets),
-            headerTextLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -insets)
-        ])
+        headerTextLabel.snp.makeConstraints { make in
+            make.verticalEdges.equalToSuperview().inset(insets)
+            make.leading.equalToSuperview()
+            make.trailing.lessThanOrEqualTo(eyeButton.snp.leading).inset(insets)
+        }
     }
 
     func constraintEyeButton() {
-        eyeButton.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(eyeButton)
         let insets = 10.0
         eyeButton.setContentCompressionResistancePriority(.required, for: .horizontal)
 
-        NSLayoutConstraint.activate([
-            eyeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -insets),
-            eyeButton.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: insets),
-            eyeButton.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -insets),
-            eyeButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-        ])
+        eyeButton.snp.makeConstraints { make in
+            make.verticalEdges.equalToSuperview().inset(insets)
+            make.trailing.equalToSuperview().inset(insets)
+            make.centerY.equalToSuperview()
+        }
     }
 }

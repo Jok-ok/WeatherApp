@@ -94,8 +94,16 @@ private extension ChartTableViewCell {
         contentView.backgroundColor = .getAppColor(.secondaryBackgroundColor)
         configureChartAppearance()
         configureTitleLabelAppearance()
+
+        addSubviews()
+
         constraintTitleLabel()
         constraintChart()
+    }
+
+    func addSubviews() {
+        contentView.addSubview(chartView)
+        contentView.addSubview(titleLabel)
     }
 
     func configureTitleLabelAppearance() {
@@ -138,7 +146,6 @@ private extension ChartTableViewCell {
     }
 
     func constraintTitleLabel() {
-        contentView.addSubview(titleLabel)
         let inset = 25.0
 
         titleLabel.snp.makeConstraints { make in
@@ -149,13 +156,11 @@ private extension ChartTableViewCell {
     }
 
     func constraintChart() {
-        contentView.addSubview(chartView)
         let inset = 25.0
 
         chartView.snp.makeConstraints { make in
-            make.leading.equalTo(contentView)
-            make.trailing.equalTo(contentView)
-            make.bottom.equalTo(contentView).offset(-inset)
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.equalToSuperview().inset(inset)
             make.top.equalTo(titleLabel.snp.bottom).offset(inset)
             make.height.greaterThanOrEqualTo(200)
         }

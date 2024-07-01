@@ -1,5 +1,6 @@
 import UIKit
 import DGCharts
+import SnapKit
 
 final class ChartTableViewCell: UITableViewCell, CellIdentifiableProtocol, CellConfigurableProtocol {
     typealias Model = ChartCellModel
@@ -93,8 +94,16 @@ private extension ChartTableViewCell {
         contentView.backgroundColor = .getAppColor(.secondaryBackgroundColor)
         configureChartAppearance()
         configureTitleLabelAppearance()
+
+        addSubviews()
+
         constraintTitleLabel()
         constraintChart()
+    }
+
+    func addSubviews() {
+        contentView.addSubview(chartView)
+        contentView.addSubview(titleLabel)
     }
 
     func configureTitleLabelAppearance() {
@@ -137,29 +146,24 @@ private extension ChartTableViewCell {
     }
 
     func constraintTitleLabel() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(titleLabel)
         let inset = 25.0
 
-        NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
-            titleLabel.topAnchor .constraint(equalTo: contentView.topAnchor, constant: inset)
-        ])
+        titleLabel.snp.makeConstraints { make in
+            make.leading.equalTo(contentView).offset(inset)
+            make.trailing.equalTo(contentView).offset(-inset)
+            make.top.equalTo(contentView).offset(inset)
+        }
     }
 
     func constraintChart() {
-        chartView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(chartView)
         let inset = 25.0
 
-        NSLayoutConstraint.activate([
-            chartView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            chartView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            chartView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -25.0),
-            chartView.topAnchor .constraint(equalTo: titleLabel.bottomAnchor, constant: inset),
-            chartView.heightAnchor.constraint(greaterThanOrEqualToConstant: 200)
-        ])
+        chartView.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.equalToSuperview().inset(inset)
+            make.top.equalTo(titleLabel.snp.bottom).offset(inset)
+            make.height.greaterThanOrEqualTo(200)
+        }
     }
 }
 

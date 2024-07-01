@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 final class SectionHeaderView: UITableViewHeaderFooterView, CellIdentifiableProtocol, CellConfigurableProtocol {
     typealias Model = SectionHeaderModel
@@ -24,6 +25,7 @@ final class SectionHeaderView: UITableViewHeaderFooterView, CellIdentifiableProt
 private extension SectionHeaderView {
     func configureAppearance() {
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        contentView.addSubview(headerTextLabel)
         configureLabelAppearance()
         constraintLabel()
     }
@@ -36,15 +38,11 @@ private extension SectionHeaderView {
     }
 
     func constraintLabel() {
-        headerTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(headerTextLabel)
         let insets = 10.0
 
-        NSLayoutConstraint.activate([
-            headerTextLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
-            headerTextLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
-            headerTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: insets),
-            headerTextLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -insets)
-        ])
+        headerTextLabel.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview()
+            make.verticalEdges.equalToSuperview().inset(insets).priority(.low)
+        }
     }
 }

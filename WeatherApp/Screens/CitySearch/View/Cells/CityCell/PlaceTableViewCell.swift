@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 final class PlaceTableViewCell: UITableViewCell, CellIdentifiableProtocol, CellConfigurableProtocol {
     typealias Model = PlaceCellModel
@@ -46,10 +47,17 @@ private extension PlaceTableViewCell {
         configureCityNameLabelAppearance()
         configureSubtitileLabelAppearance()
         configureFavoriteButtonAppearance()
+        addSubviews()
 
         constraintFavoriteButton()
         constraintCityNameLabel()
         constraintSubtitleLabel()
+    }
+
+    func addSubviews() {
+        contentView.addSubview(favoriteButton)
+        contentView.addSubview(cityNameLabel)
+        contentView.addSubview(subtitleLable)
     }
 
     func configureCityNameLabelAppearance() {
@@ -79,43 +87,35 @@ private extension PlaceTableViewCell {
     }
 
     func constraintCityNameLabel() {
-        cityNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(cityNameLabel)
         let insets = 10.0
-
-        NSLayoutConstraint.activate([
-            cityNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: insets),
-            cityNameLabel.trailingAnchor.constraint(lessThanOrEqualTo: favoriteButton.leadingAnchor, constant: -insets),
-            cityNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: insets)
-        ])
+        cityNameLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(insets)
+            make.trailing.equalTo(favoriteButton.snp.leading).offset(-insets)
+            make.top.equalToSuperview().offset(insets)
+        }
     }
 
     func constraintSubtitleLabel() {
-        subtitleLable.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(subtitleLable)
         let insets = 10.0
         let labelInset = 5.0
 
-        NSLayoutConstraint.activate([
-            subtitleLable.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: insets),
-            subtitleLable.trailingAnchor.constraint(lessThanOrEqualTo: favoriteButton.leadingAnchor, constant: -insets),
-            subtitleLable.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor, constant: labelInset),
-            subtitleLable.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -insets)
-        ])
+        subtitleLable.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(insets)
+            make.trailing.lessThanOrEqualTo(favoriteButton.snp.leading).offset(-insets)
+            make.top.equalTo(cityNameLabel.snp.bottom).offset(labelInset)
+            make.bottom.equalToSuperview().offset(-insets)
+        }
     }
 
     func constraintFavoriteButton() {
-        favoriteButton.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(favoriteButton)
-
         let insets = 10.0
-        favoriteButton.setContentCompressionResistancePriority(.required, for: .horizontal)
+        favoriteButton.snp.contentCompressionResistanceHorizontalPriority = 1000
 
-        NSLayoutConstraint.activate([
-            favoriteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -insets),
-            favoriteButton.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: insets),
-            favoriteButton.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -insets),
-            favoriteButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-        ])
+        favoriteButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-insets)
+            make.top.greaterThanOrEqualToSuperview().offset(insets)
+            make.bottom.lessThanOrEqualToSuperview().offset(-insets)
+            make.centerY.equalToSuperview()
+        }
     }
 }
